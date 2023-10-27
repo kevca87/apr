@@ -10,7 +10,7 @@ import os
 import pytest
 from import_utils import import_function
 
-files = list(map(lambda dir_name: f'./P1/{dir_name}/code.py' ,os.listdir('./P1')))
+files = list(map(lambda dir_name: f'./dataset/T2/S2/P1/{dir_name}/code.py' ,os.listdir('./dataset/T2/S2/P1')))
 
 @pytest.mark.parametrize("file_path", files)
 def test_encontrar_elemento_mas_repetido_tc01(file_path):
