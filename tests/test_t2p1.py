@@ -1,11 +1,3 @@
-# import importlib
-# name_file_module_to_test = "P1.abisai.code"
-# file_module_to_test = importlib.import_module(name_file_module_to_test)
-
-# encontrar_elemento_mas_repetido = getattr(file_module_to_test,"encontrar_elemento_mas_repetido")
-
-# from code import encontrar_elemento_mas_repetido
-
 import os
 import pytest
 from import_utils import import_function
