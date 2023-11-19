@@ -19,7 +19,7 @@ def test_equals_true(out_file_tested:str,out_file_reference:str,print_result=Tru
 
 if __name__ == "__main__":
 
-    reference_dir = "..\\icpc2021programs\\reference"
+    reference_dir = "..\\icpc2021programs\\cpp\\reference"
     data_dir = "..\\icpc2021data"
     for dirpath, dirnames, filenames in os.walk(reference_dir):
         # print(f'Visited directory: {dirpath}')
