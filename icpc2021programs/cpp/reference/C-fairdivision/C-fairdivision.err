@@ -1,0 +1,16 @@
+..\icpc2021programs\cpp\reference\C-fairdivision\C-fairdivision.cpp: In function 'int main()':
+..\icpc2021programs\cpp\reference\C-fairdivision\C-fairdivision.cpp:22:9: error: '__int128_t' was not declared in this scope
+         __int128_t qp = 1, pp = 1;
+         ^~~~~~~~~~
+..\icpc2021programs\cpp\reference\C-fairdivision\C-fairdivision.cpp:23:37: error: 'qp' was not declared in this scope
+         for (int i = 0; i < N; i++) qp *= q;
+                                     ^~
+..\icpc2021programs\cpp\reference\C-fairdivision\C-fairdivision.cpp:24:37: error: 'pp' was not declared in this scope
+         for (int i = 0; i < N; i++) pp *= q-p;
+                                     ^~
+..\icpc2021programs\cpp\reference\C-fairdivision\C-fairdivision.cpp:25:32: error: 'qp' was not declared in this scope
+         if (__int128_t(M)*p % (qp-pp) == 0) goto done;
+                                ^~
+..\icpc2021programs\cpp\reference\C-fairdivision\C-fairdivision.cpp:25:35: error: 'pp' was not declared in this scope
+         if (__int128_t(M)*p % (qp-pp) == 0) goto done;
+                                   ^~

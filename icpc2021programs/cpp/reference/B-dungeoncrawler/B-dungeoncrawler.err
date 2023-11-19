@@ -1,0 +1,116 @@
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp: In lambda function:
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:25:17: error: expected unqualified-id before '[' token
+       for (auto [y, d] : c[x]) {
+                 ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:25:17: error: expected ';' before '[' token
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:25:18: error: 'y' was not declared in this scope
+       for (auto [y, d] : c[x]) {
+                  ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:25:21: error: 'd' was not declared in this scope
+       for (auto [y, d] : c[x]) {
+                     ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp: In lambda function:
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:25:24: error: expected '{' before ':' token
+       for (auto [y, d] : c[x]) {
+                        ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp: In lambda function:
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:25:24: error: expected ';' before ':' token
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:25:24: error: expected primary-expression before ':' token
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:25:24: error: expected ')' before ':' token
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:25:24: error: expected primary-expression before ':' token
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp: In lambda function:
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:33:17: error: expected unqualified-id before '[' token
+       for (auto [l, y] : longest[x]) {
+                 ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:33:17: error: expected ';' before '[' token
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:33:18: error: 'l' was not declared in this scope
+       for (auto [l, y] : longest[x]) {
+                  ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:33:21: error: 'y' was not declared in this scope
+       for (auto [l, y] : longest[x]) {
+                     ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp: In lambda function:
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:33:24: error: expected '{' before ':' token
+       for (auto [l, y] : longest[x]) {
+                        ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp: In lambda function:
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:33:24: error: expected ';' before ':' token
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:33:24: error: expected primary-expression before ':' token
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:33:24: error: expected ')' before ':' token
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:33:24: error: expected primary-expression before ':' token
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp: In lambda function:
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:39:18: error: expected unqualified-id before '[' token
+       for (auto& [l, _] : longest[x]) if (l == -1) l = parLongest;
+                  ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:39:18: error: expected ';' before '[' token
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:39:19: error: 'l' was not declared in this scope
+       for (auto& [l, _] : longest[x]) if (l == -1) l = parLongest;
+                   ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:39:22: error: '_' was not declared in this scope
+       for (auto& [l, _] : longest[x]) if (l == -1) l = parLongest;
+                      ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp: In lambda function:
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:39:25: error: expected '{' before ':' token
+       for (auto& [l, _] : longest[x]) if (l == -1) l = parLongest;
+                         ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp: In lambda function:
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:39:25: error: expected ';' before ':' token
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:39:25: error: expected primary-expression before ':' token
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:39:25: error: expected ')' before ':' token
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:39:25: error: expected primary-expression before ':' token
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:41:17: error: expected unqualified-id before '[' token
+       for (auto [y, d] : c[x]) if (y != prev) doParLongest(y, x, d + getLongest(x, y, -1));
+                 ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:41:17: error: expected ';' before '[' token
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:41:18: error: 'y' was not declared in this scope
+       for (auto [y, d] : c[x]) if (y != prev) doParLongest(y, x, d + getLongest(x, y, -1));
+                  ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:41:21: error: 'd' was not declared in this scope
+       for (auto [y, d] : c[x]) if (y != prev) doParLongest(y, x, d + getLongest(x, y, -1));
+                     ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp: In lambda function:
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:41:24: error: expected '{' before ':' token
+       for (auto [y, d] : c[x]) if (y != prev) doParLongest(y, x, d + getLongest(x, y, -1));
+                        ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp: In lambda function:
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:41:24: error: expected ';' before ':' token
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:41:24: error: expected primary-expression before ':' token
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:41:24: error: expected ')' before ':' token
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:41:24: error: expected primary-expression before ':' token
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp: In function 'int main()':
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:115:14: error: expected unqualified-id before '[' token
+         auto [y, b] = path1[i];
+              ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:116:58: error: 'y' was not declared in this scope
+         ret = max(ret, base + getLongest(x, prev, skipNd[y][0]));
+                                                          ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:117:42: error: 'b' was not declared in this scope
+         ret = max(ret, base + skipSUp[y][b]);
+                                          ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:123:14: error: expected unqualified-id before '[' token
+         auto [y, b] = path2[i];
+              ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:124:58: error: 'y' was not declared in this scope
+         ret = max(ret, base + getLongest(x, prev, skipNd[y][0]));
+                                                          ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:125:42: error: 'b' was not declared in this scope
+         ret = max(ret, base + skipKUp[y][b]);
+                                          ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:131:14: error: expected unqualified-id before '[' token
+         auto [y, b] = path3[i];
+              ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:132:60: error: 'y' was not declared in this scope
+         ret = max(ret, base + getLongest(x, prev, skipPrev[y][b]));
+                                                            ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:132:63: error: 'b' was not declared in this scope
+         ret = max(ret, base + getLongest(x, prev, skipPrev[y][b]));
+                                                               ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:139:14: error: expected unqualified-id before '[' token
+         auto [y, b] = path4[i];
+              ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:140:60: error: 'y' was not declared in this scope
+         ret = max(ret, base + getLongest(x, prev, skipPrev[y][b]));
+                                                            ^
+..\icpc2021programs\cpp\reference\B-dungeoncrawler\B-dungeoncrawler.cpp:140:63: error: 'b' was not declared in this scope
+         ret = max(ret, base + getLongest(x, prev, skipPrev[y][b]));
+                                                               ^
