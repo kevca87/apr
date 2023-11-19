@@ -1,0 +1,20 @@
+..\icpc2021programs\reference\G-mosaicbrowsing\G-mosaicbrowsing.cpp: In function 'int main()':
+..\icpc2021programs\reference\G-mosaicbrowsing\G-mosaicbrowsing.cpp:53:15: error: expected unqualified-id before '[' token
+     for (auto [x, y] : v) cout << y+1 << ' ' << x+1 << endl;
+               ^
+..\icpc2021programs\reference\G-mosaicbrowsing\G-mosaicbrowsing.cpp:53:15: error: expected ';' before '[' token
+..\icpc2021programs\reference\G-mosaicbrowsing\G-mosaicbrowsing.cpp:53:16: error: 'x' was not declared in this scope
+     for (auto [x, y] : v) cout << y+1 << ' ' << x+1 << endl;
+                ^
+..\icpc2021programs\reference\G-mosaicbrowsing\G-mosaicbrowsing.cpp:53:19: error: 'y' was not declared in this scope
+     for (auto [x, y] : v) cout << y+1 << ' ' << x+1 << endl;
+                   ^
+..\icpc2021programs\reference\G-mosaicbrowsing\G-mosaicbrowsing.cpp: In lambda function:
+..\icpc2021programs\reference\G-mosaicbrowsing\G-mosaicbrowsing.cpp:53:22: error: expected '{' before ':' token
+     for (auto [x, y] : v) cout << y+1 << ' ' << x+1 << endl;
+                      ^
+..\icpc2021programs\reference\G-mosaicbrowsing\G-mosaicbrowsing.cpp: In function 'int main()':
+..\icpc2021programs\reference\G-mosaicbrowsing\G-mosaicbrowsing.cpp:53:22: error: expected ';' before ':' token
+..\icpc2021programs\reference\G-mosaicbrowsing\G-mosaicbrowsing.cpp:53:22: error: expected primary-expression before ':' token
+..\icpc2021programs\reference\G-mosaicbrowsing\G-mosaicbrowsing.cpp:53:22: error: expected ')' before ':' token
+..\icpc2021programs\reference\G-mosaicbrowsing\G-mosaicbrowsing.cpp:53:22: error: expected primary-expression before ':' token
