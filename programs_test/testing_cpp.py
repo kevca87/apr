@@ -26,15 +26,15 @@ if __name__ == "__main__":
         # print(f'Subdirectories: {dirnames}')
         # print(f'Files: {filenames}')
         for filename in filenames:
-            # print(dirpath.split("\\"))
-            problem_name = dirpath.split("\\")[-1]
             if filename.endswith(".cpp"):
                 try:
                     file_path = os.path.join(dirpath, filename)
-                    compile_cpp(file_path)
-                    # input_dir = os.path.join(data_dir,problem_name)
-                    # input_file = os.path.join(input_dir,"sample-1.in")
-                    # run_cpp(file_path.replace(".cpp",".exe"),input_file,file_path.replace(".cpp",".out"))
+                    compiled_successfully = compile_cpp(file_path)
+                    if compiled_successfully:
+                        problem_name = dirpath.split("\\")[-1]
+                        input_dir = os.path.join(data_dir,problem_name)
+                        input_file = os.path.join(input_dir,"sample-1.in")
+                        run_cpp(file_path.replace(".cpp",".exe"),input_file,file_path.replace(".cpp",".out"))
                 except Exception as e:
                     print(f"ERROR: {file_path}")
                     print(e)
