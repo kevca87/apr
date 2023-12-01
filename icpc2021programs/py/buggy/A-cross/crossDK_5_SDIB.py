@@ -20,7 +20,7 @@ while True:
     try:
         X, Y, N = map(int, input().split())
     except EOFError:
-        
+        continue
 
     g = [['' for _ in range(X + 1)] for _ in range(Y + 1)]
     wm, wn = [0] * N, [0] * N

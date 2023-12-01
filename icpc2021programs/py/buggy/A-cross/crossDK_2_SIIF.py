@@ -33,7 +33,7 @@ while True:
 
         assert len(boundary_coordinates) == B * 2
 
-        if l:
+        if B > 99999999:
             for j in range(0, len(boundary_coordinates), 2):
                 x, y = boundary_coordinates[j], boundary_coordinates[j + 1]
                 g[y][x] = '#'
