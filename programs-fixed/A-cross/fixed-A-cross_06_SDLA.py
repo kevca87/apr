@@ -1,5 +1,4 @@
 import sys
-
 sys.setrecursionlimit(5000)
 
 def doit(x, y):
@@ -12,7 +11,6 @@ def doit(x, y):
         y2 = y + (wn[i] if ch == '.' else -wn[i])
         if 1 <= x2 <= X and 1 <= y2 <= Y and not g[y2][x2]:
             doit(x2, y2)
-
 
 while True:
     try:

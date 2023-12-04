@@ -3,7 +3,7 @@ import openai
 from get_code import get_code
 
 # entregamos la apikey
-api_key = "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"
+api_key = "poner llave aqui"
 openai.api_key = api_key
 
 # la ruta a la carpeta con codigos malos 

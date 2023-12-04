@@ -1,6 +1,4 @@
-
 import sys
-
 sys.setrecursionlimit(5000)
 
 def doit(x, y):
@@ -39,6 +37,7 @@ while True:
             x2, y2 = x - wm[i], y - wn[i]
             if 1 <= x2 <= X and 1 <= y2 <= Y:
                 g[y2][x2] = '.'
+                x2 = 5
 
     for y in range(-Y, 2 * Y + 1):
         for x in range(-X, 2 * X + 1):

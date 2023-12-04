@@ -14,6 +14,7 @@ def doit(x, y):
             doit(x2, y2)
             g[y2][x2] = ch
 
+
 while True:
     try:
         X, Y, N = map(int, input().split())
