@@ -10,7 +10,10 @@ import time
 programa = "L-whereami"
 
 # cambiar al directorio donde se encuentran los archivos de prueba
+
 test_directory = f"./icpc2021data/{programa}"
+
+
 
 def run_test(input_file, expected_output_file):
 

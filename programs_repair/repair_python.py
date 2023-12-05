@@ -3,7 +3,7 @@ import openai
 from get_code import get_code
 
 # entregamos la apikey
-api_key = "poner llave aqui"
+api_key = "AGREGAR API KEY AQUI"
 openai.api_key = api_key
 
 # la ruta a la carpeta con codigos malos 
@@ -14,7 +14,6 @@ fixed_codes_path = "programs-fixed"
 
 
 buggy_programs_folders = os.listdir(buggy_codes_path)
-print(buggy_programs_folders)
 
 for folfer in buggy_programs_folders:
     print(f"arreglando codigos de la carpeta {buggy_codes_path}/{folfer}")
