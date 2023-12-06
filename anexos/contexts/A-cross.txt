@@ -1,0 +1,1 @@
+wind directions over a crystal surface and observed molecular boundaries from those winds. Program: Find the minimal and maximal crystal structures (molecules mapped to a grid) consistent with observations. Constraints: dimensions up to 103, up to 10 winds, up to 105 observed boundaries per wind.

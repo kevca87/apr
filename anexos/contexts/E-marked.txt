@@ -1,0 +1,1 @@
+Deck with n cards and m types of back markings, number of cards of each marking type, number of cards shown k (k <= 10). Program: Compute probability to guess hidden card with optimal strategies. Constraints: Answer within 10-9 absolute error.

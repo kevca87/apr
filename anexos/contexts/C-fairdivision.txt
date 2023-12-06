@@ -1,0 +1,1 @@
+number of pirates n (n <=106) and amount of loot m (m <= 1018). Program: Find a fraction f such that having each pirate take fraction f of remaining loot in round-robin fashion results in each pirate getting an integer amount after infinite repetitions. Constraints: Exact solution if exists, smallest q (denominator) otherwise.

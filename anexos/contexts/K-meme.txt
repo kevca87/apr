@@ -1,0 +1,1 @@
+Meme tournament tree structure and input meme x,y coordinates. Program: Compute maximum quality (squared distance from origin (0,0)) possible for any output meme. Constraints: n ≤ 104 nodes, coordinates -103 to 103.

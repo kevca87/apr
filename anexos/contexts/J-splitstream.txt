@@ -1,0 +1,1 @@
+ Network processing integer sequence 1..m, q queries for kth number at given output. Program: Output kth number or none if index invalid. Constraints: m ≤ 109, n ≤ 104 nodes, q ≤ 103 queries.

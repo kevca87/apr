@@ -1,0 +1,1 @@
+Grid map with markers, dimensions ≤ 100. Program: 1) Expected steps to identify cell starting at random location, within 10-3 error, 2) Maximum steps required, 3) Cells requiring maximum steps.

@@ -1,3 +1,4 @@
+
 import math
 
 PI = 2*math.acos(0)
@@ -98,7 +99,7 @@ while True:
                                 fail = True
                                 break
                         
-                        seen[i] = True
+                        seen[i] = not fail
             if seen == [True] * N:
                 hi = th
             else:

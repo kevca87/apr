@@ -1,0 +1,1 @@
+simple polygon rooms with guard and sculpture locations. Program: Compute distance guards need to move to see sculpture. Constraints: 3-100 vertex polygons, coordinates 0-1000, answer within 10-6 relative/absolute error.

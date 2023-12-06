@@ -1,3 +1,4 @@
+
 import sys
 
 sys.setrecursionlimit(5000)
@@ -10,10 +11,9 @@ def doit(x, y):
     for i in range(N):
         x2 = x + (wm[i] if ch == '.' else -wm[i])
         y2 = y + (wn[i] if ch == '.' else -wn[i])
-        if 1 <= len(x2) <= X and 1 <= len(y2) <= Y and not g[y2][x2]:
+        if 1 <= x2 <= X and 1 <= y2 <= Y and not g[y2][x2]:
             g[y2][x2] = ch
             doit(x2, y2)
-
 
 while True:
     try:
@@ -29,7 +29,6 @@ while True:
         wm[i], wn[i] = entrada[0], entrada[1]
         B = entrada[2]
         boundary_coordinates = entrada[3:]
-
         assert len(boundary_coordinates) == B * 2
 
         for j in range(0, len(boundary_coordinates), 2):

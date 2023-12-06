@@ -1,3 +1,4 @@
+
 import random
 
 class Point:
@@ -64,7 +65,7 @@ def doit(x):
     return (-mxtot + mndiff, -mntot + mxdiff)
 
 def tryAngle(dir):
-    global cmpx, cmpy, ret  
+    global cmpx, cmpy, ret
     cmpx = dir.x
     cmpy = dir.y
     result = doit(1)
@@ -102,7 +103,6 @@ for i in range(1, N + 1):
         p[i] = Point(x, y)
     else:
         ch[i] = list(map(int, line[1:]))
-
 
 ret = 0
 angles = tryAngle(Point(1, 0))

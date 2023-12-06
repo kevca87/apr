@@ -1,0 +1,1 @@
+Up to 100 islands as polygons, up to 100 flight paths as 3D line segments. Program: Find smallest camera aperture angle θ to fully photograph all islands. Constraints: island and flight coordinates -106 to 106, output θ exact within 10-6 relative/absolute error or impossible.

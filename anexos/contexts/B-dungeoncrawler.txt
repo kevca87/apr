@@ -1,0 +1,1 @@
+escape room map with n rooms (n <= 2000) and corridor traversal times, q scenarios with start/idol/trap rooms. Program: For each scenario compute fastest route visiting all rooms or output impossible if trap can't be avoided. Constraints: up to 200,000 scenarios, traversal times up to 109.

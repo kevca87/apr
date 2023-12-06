@@ -53,8 +53,8 @@ def doit(x):
     mxtot = result[1]
     mndiff = mxtot + mntot
     mxdiff = mndiff
-    for i in range(1, len(ch[x])):
-        result = doit(ch[x][i])
+    for i in ch[x][1:]:
+        result = doit(i)
         mn = result[0]
         mx = result[1]
         mntot = mntot + mn
@@ -82,8 +82,10 @@ def traceHull(a, b):
     result = tryAngle((b-a).ortho())
     c = result[1]
  
-    traceHull(a, c)
-    traceHull(c, b)
+    if a < c:
+        traceHull(a, c)
+        traceHull(c, b)
+
 
 init()
 N = int(input())

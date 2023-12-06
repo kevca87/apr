@@ -1,5 +1,4 @@
 
-
 try:
     N = int(input())
     fv, bv = [], []
@@ -27,6 +26,7 @@ try:
             if cur < v[j][0]:
                 raise Exception
             cur += v[j][1]
+        
     else:
         if bv == []:
             bv.reverse()

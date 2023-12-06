@@ -3,7 +3,7 @@ import openai
 from get_code import get_code
 
 # entregamos la apikey
-api_key = "AGREGAR API KEY AQUI"
+api_key = "PUT HERE APIKEY"
 openai.api_key = api_key
 
 # la ruta a la carpeta con codigos malos 
@@ -36,7 +36,7 @@ for folfer in buggy_programs_folders:
 
             # Realiza la solicitud a la API
             response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",  # Asegúrate de utilizar el nombre del modelo correcto
+                model="gpt-4-1106-preview",  # Asegúrate de utilizar el nombre del modelo correcto
                 messages=messages, # Puedes ajustar este valor según tus necesidades
             )
 
