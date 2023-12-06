@@ -1,56 +1,79 @@
 import os
 import openai
 from get_code import get_code
+from dotenv import load_dotenv
+from colorama import Fore, Style
+from tqdm import tqdm
 
-# entregamos la apikey
-api_key = "PUT HERE APIKEY"
+# Cargar las variables de entorno del archivo .env
+load_dotenv()
+
+# Funciones para imprimir mensajes de manera estilizada
+def print_info(message):
+    print(Fore.BLUE + "[INFO] " + Style.RESET_ALL + message)
+
+def print_warning(message):
+    print(Fore.YELLOW + "[WARNING] " + Style.RESET_ALL + message)
+
+def print_error(message):
+    print(Fore.RED + "[ERROR] " + Style.RESET_ALL + message)
+
+def print_success(message):
+    print(Fore.GREEN + "[SUCCESS] " + Style.RESET_ALL + message)
+
+# Configuración de las variables de entorno
+api_key = os.getenv("API_KEY")
+buggy_codes_path = os.getenv("BUGGY_CODES_PATH")
+fixed_codes_path = os.getenv("FIXED_CODES_PATH")
+model_name = os.getenv("MODEL_NAME")
+
+# Configurar la API key de OpenAI
 openai.api_key = api_key
 
-# la ruta a la carpeta con codigos malos 
-buggy_codes_path = "icpc2021programs/py/buggy"
-
-# la ruta a la carpeta de codigos fixeados
-fixed_codes_path = "programs-fixed"
-
-
+# Procesar las carpetas con códigos con errores
 buggy_programs_folders = os.listdir(buggy_codes_path)
 
-for folfer in buggy_programs_folders:
-    print(f"arreglando codigos de la carpeta {buggy_codes_path}/{folfer}")
-    codigos = os.listdir(f"{buggy_codes_path}/{folfer}")
+for folder in tqdm(buggy_programs_folders, desc="Procesando carpetas"):
+    print_info(f"Arreglando códigos de la carpeta {folder}")
+    codigos = os.listdir(os.path.join(buggy_codes_path, folder))
 
     if codigos:
-        for codigo in codigos:
-            print(f"---- arreglando codigo {buggy_codes_path}/{folfer}/{codigo}")
+        for codigo in tqdm(codigos, desc="Arreglando códigos", leave=False):
+            try:
+                # Leer el contenido del archivo
+                with open(os.path.join(buggy_codes_path, folder, codigo), 'r') as file:
+                    content = file.read()
 
-            # leemos el contenido del archivo
-            with open(f"{buggy_codes_path}/{folfer}/{codigo}", 'r') as file:
-                # guardamos en contenido en una variable para entregarlo a la API
-                content = file.read()
+                # Definir los mensajes para la API
+                messages = [
+                    {"role": "system", "content": "Reparación de código"},
+                    {"role": "user", "content": f"fix the code, just give me back the code and no comments:\n{content}"}
+                ]
 
-            # definimos los mensajes que se entregarán a la api apra que corrija el código
-            messages = [
-                {"role": "system", "content": "Reparacion de código"},
-                {"role": "user", "content": f"fix the code, just give me back the code and no comments:\n{content}"}
-            ]
+                # Realizar la solicitud a la API
+                response = openai.ChatCompletion.create(
+                    model=model_name,
+                    messages=messages
+                )
 
-            # Realiza la solicitud a la API
-            response = openai.ChatCompletion.create(
-                model="gpt-4-1106-preview",  # Asegúrate de utilizar el nombre del modelo correcto
-                messages=messages, # Puedes ajustar este valor según tus necesidades
-            )
+                # Obtener la corrección del código
+                correccion = response['choices'][0]['message']['content']
+                
+                # Guardar el código corregido
+                get_code(correccion, os.path.join(fixed_codes_path, folder, f"fixed-{codigo}"))
 
-            # Obtén la corrección del código
-            correccion = response['choices'][0]['message']['content']
+            except Exception as e:
+                print_error(f"Error al procesar {codigo}: {e}")
             
-            # guardamos el código arreglado en un archivo
-            get_code(correccion, f"{fixed_codes_path}/{folfer}/fixed-{codigo}")
-
-
-
+            # Espacio después de cada archivo (opcional)
             print("\n")
-    else:
-        print(f"XXX no hay codigos en la carpeta XXX")
-        print("\n")
 
-    
+        # Separador después de procesar todos los archivos en una carpeta
+        print("\n" + "-" * 50 + "\n")
+
+    else:
+        print_warning(f"No hay códigos en la carpeta {folder}")
+        # Separador si la carpeta está vacía
+        print("\n" + "-" * 50 + "\n")
+
+print_success("Proceso completado exitosamente!")

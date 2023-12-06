@@ -1,7 +1,7 @@
 
 import math
 
-PI = 2*math.acos(0)
+PI = math.pi
 
 class Point:
     def __init__(self, x, y):

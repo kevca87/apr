@@ -1,4 +1,3 @@
-
 import random
 
 class Point:
@@ -64,7 +63,7 @@ def doit(x):
     return (-mxtot + mndiff, -mntot + mxdiff)
 
 def tryAngle(dir):
-    global cmpx, cmpy, ret
+    global cmpx, cmpy, ret  # Add 'ret' to the list of global variables
     cmpx = dir.x
     cmpy = dir.y
     result = doit(1)
@@ -82,8 +81,10 @@ def traceHull(a, b):
     result = tryAngle((b-a).ortho())
     c = result[1]
  
+
     traceHull(a, c)
     traceHull(c, b)
+
 
 init()
 N = int(input())
@@ -100,6 +101,7 @@ for i in range(1, N + 1):
         p[i] = Point(x, y)
     else:
         ch[i] = list(map(int, line[1:]))
+
 
 ret = 0
 angles = tryAngle(Point(1, 0))

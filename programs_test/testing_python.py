@@ -1,33 +1,13 @@
 import json
 import subprocess
 import os
+from functions import save_results_as_json, print_header, print_test_result, print_error, print_summary
+from dotenv import load_dotenv
 
+# Cargar las variables de entorno del archivo .env
+load_dotenv()
+model_name = os.getenv("MODEL_NAME")
 
-def print_header(title):
-    print(f"\n{'=' * 50}\n{title}\n{'=' * 50}")
-
-def print_test_result(program_name, passed_tests, total_tests):
-    print(f"El programa '{program_name}' pasó {passed_tests} de {total_tests} casos de prueba")
-
-def print_error(error_msg):
-    print(f"ERROR: {error_msg}")
-
-def print_summary(total_tests, total_passed):
-    print(f"\nRESUMEN: De {total_tests} pruebas, {total_passed} fueron exitosas.")
-
-
-def save_results_as_json(folder, codigo, tests_passed, total_tests):
-    results_folder = f"Results/py/{folder}"
-    os.makedirs(results_folder, exist_ok=True)
-    file_path = f"{results_folder}/{codigo}.json"
-
-    result_status = "Correctamente arreglado" if tests_passed == total_tests else "Codigo mal arreglado"
-    results_data = {
-        codigo: f"{tests_passed} codigos pasados de {total_tests} total. Estado: {result_status}"
-    }
-
-    with open(file_path, "w") as file:
-        json.dump(results_data, file, indent=4, ensure_ascii=False)
 
 total_tests_run = 0
 total_tests_passed = 0
@@ -93,7 +73,7 @@ for folder in folders:
                             total_tests_passed += 1
             
             print_test_result(codigo, program_tests_passed, len(os.listdir(f'icpc2021data/{folder}')))
-            save_results_as_json(folder, codigo, program_tests_passed, total_tests_for_program)
+            save_results_as_json(folder, codigo, program_tests_passed, total_tests_for_program, model_name)
 
     else:
         print("No existen códigos arreglados en esta carpeta.")

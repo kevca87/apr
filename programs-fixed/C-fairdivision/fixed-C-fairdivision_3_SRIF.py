@@ -1,4 +1,3 @@
-
 def main():
     while True:
         try:
@@ -11,20 +10,15 @@ def main():
 
         pw = [0, 0]  # To adjust indices to match C++ code
         q = 2
-        while True:
+        while q < 1.1 * M * q: # Changed d to q in the condition
             pw.append(q ** N)
-            d = pw[q] - pw[q - 1]
-            if d > 1.1 * M * q:
-                if q == 2:
-                    print("impossible")
-                    break
-                q += 1
-                continue
-
             for p in range(1, q):
                 d = pw[q] - pw[q - p]
                 if d > 1.1 * M * q:
-                    break
+                    if p == 1:
+                        print("impossible")
+                        break
+                    continue
 
                 qp = q ** N
                 pp = (q - p) ** N

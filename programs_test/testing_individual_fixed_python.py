@@ -4,6 +4,10 @@ import os
 import sys
 import time 
 
+from colorama import init, Fore, Style
+init(autoreset=True)
+
+
 # Establecer el nuevo límite de recursión
 
 # cambiar al programa que se desea ejecutar
@@ -25,11 +29,11 @@ def run_test(input_file, expected_output_file):
             expected_output = outfile.read()
 
         result = subprocess.run(
-            ['python', f"icpc2021programs/py/reference/{programa}.py"],
+            ['python', f"programs-fixed/{programa}/fixed-{programa}_1_SDIF.py"],
             input=input_text,
             text=True,
             capture_output=True,
-            timeout=70
+            timeout=5
         )
 
         if result.returncode != 0:
@@ -39,7 +43,7 @@ def run_test(input_file, expected_output_file):
         return result.stdout.strip() == expected_output.strip(), time.time() - start_time
 
     except subprocess.TimeoutExpired:
-        print("El proceso excedió el tiempo límite de 60 segundos.")
+        print("El proceso excedió el tiempo límite de 5 segundos.")
         return False, time.time() - start_time
     except Exception as e:
         print(f"Error al ejecutar la prueba: {e}")
@@ -55,7 +59,8 @@ for filename in os.listdir(test_directory):
 
         if os.path.exists(expected_output_file):
             test_result, duration = run_test(input_file, expected_output_file)
-            print(f"Test {basename}: {'PASA' if test_result else 'FALLA'} en {duration:.2f} segundos")
+            result_text = 'PASA' if test_result else f"{Fore.RED}FALLA{Style.RESET_ALL}"
+            print(f"Test {basename}: {result_text} en {duration:.2f} segundos")
             if test_result:
                 counter += 1
 

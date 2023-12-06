@@ -1,9 +1,7 @@
-
 from typing import List
 from collections import defaultdict
 
 def main():
-    
     X, Y = map(int, input().split())
     g = [input().strip() for _ in range(Y)]
     g.reverse()
@@ -39,7 +37,6 @@ def main():
     compt = [0] * (X * Y)
     compsz = [X * Y]
 
-
     t = 0
     while len(compsz) < X * Y:
         if len(obs[t]) !=0:
@@ -68,7 +65,6 @@ def main():
                 i = j
         t += 1
 
-    
     mx = max(compt)
     tot = sum(compt)
 
@@ -84,7 +80,6 @@ def main():
             print(f"({i % X + 1},{i // X + 1})", end='')
 
     print()
-
 
 if __name__ == "__main__":
     main()
