@@ -52,7 +52,7 @@ def doit(x):
     mxtot = result[1]
     mndiff = mxtot + mntot
     mxdiff = mndiff
-    for i in range(1, ch[x]):
+    for i in range(1, len(ch[x])):
         result = doit(ch[x][i])
         mn = result[0]
         mx = result[1]
@@ -63,7 +63,7 @@ def doit(x):
     return (-mxtot + mndiff, -mntot + mxdiff)
 
 def tryAngle(dir):
-    global cmpx, cmpy, ret  
+    global cmpx, cmpy, ret 
     cmpx = dir.x
     cmpy = dir.y
     result = doit(1)

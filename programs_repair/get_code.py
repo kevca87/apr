@@ -12,6 +12,12 @@ def get_code(correcion, path):
     if ("Here is the fixed code:" in correcion):
         correcion = correcion.split("Here is the fixed code:")[1]
     
+    if ("Here's the fixed code:" in correcion):
+        correcion = correcion.split("Here is the fixed code:")[1]
+    
+    if ("Fixed code:" in correcion):
+        correcion = correcion.split("Here is the fixed code:")[1]
+    
     with open(path, "w") as file:
         file.write(correcion)
     return True

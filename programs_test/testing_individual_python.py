@@ -4,6 +4,9 @@ import os
 import sys
 import time 
 
+from colorama import init, Fore, Style
+init(autoreset=True)
+
 # Establecer el nuevo límite de recursión
 
 # cambiar al programa que se desea ejecutar
@@ -55,9 +58,11 @@ for filename in os.listdir(test_directory):
 
         if os.path.exists(expected_output_file):
             test_result, duration = run_test(input_file, expected_output_file)
-            print(f"Test {basename}: {'PASA' if test_result else 'FALLA'} en {duration:.2f} segundos")
+            result_text = f"{Fore.GREEN}PASA{Style.RESET_ALL}" if test_result else f"{Fore.RED}FALLA{Style.RESET_ALL}"
+            print(f"Test {basename}: {result_text} en {duration:.2f} segundos")
             if test_result:
                 counter += 1
+
 
 print(f"Total de tests pasados: {counter} de {len(os.listdir(test_directory)) // 2}")
 

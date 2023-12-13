@@ -1,16 +1,17 @@
+
 def main():
     while True:
         try:
             N, M = map(int, input().split())
         except:
-            break  # Exit the loop if input is not valid
+            break
 
         if N > 200:
             N = 200
 
-        pw = [0, 0]  # To adjust indices to match C++ code
+        pw = [0, 0]
         q = 2
-        while q < 1.1 * M * q: # Changed d to q in the condition
+        while q < 100:
             pw.append(q ** N)
             for p in range(1, q):
                 d = pw[q] - pw[q - p]

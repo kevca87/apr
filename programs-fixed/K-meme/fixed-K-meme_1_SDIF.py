@@ -32,7 +32,7 @@ class Point:
 
     def lensqr(self):
         return self.x * self.x + self.y * self.y
-    
+
     def print(self):
         print("(",self.x,",",self.y,")")
 
@@ -63,7 +63,7 @@ def doit(x):
     return (-mxtot + mndiff, -mntot + mxdiff)
 
 def tryAngle(dir):
-    global cmpx, cmpy, ret  # Add 'ret' to the list of global variables
+    global cmpx, cmpy, ret
     cmpx = dir.x
     cmpy = dir.y
     result = doit(1)

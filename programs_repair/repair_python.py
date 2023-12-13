@@ -34,7 +34,25 @@ openai.api_key = api_key
 buggy_programs_folders = os.listdir(buggy_codes_path)
 
 for folder in tqdm(buggy_programs_folders, desc="Procesando carpetas"):
+
+    # Construir la ruta al archivo de contexto
+    context_file_path = os.path.join("anexos", "contexts", f"{folder}.txt")
+
+    try:
+        # Abrir y leer el archivo de contexto
+        with open(context_file_path, 'r') as file:
+            context = file.read()
+
+    except Exception as e:
+        print_error(f"Error al leer el archivo de contexto para la carpeta {folder}: {e}")
+
+
     print_info(f"Arreglando códigos de la carpeta {folder}")
+    print_info(f"Contexto para la carpeta: {context}")
+
+    with open(f"anexos/contexts/{folder}.txt", 'r') as file:
+        context = file.read()
+
     codigos = os.listdir(os.path.join(buggy_codes_path, folder))
 
     if codigos:
@@ -47,7 +65,7 @@ for folder in tqdm(buggy_programs_folders, desc="Procesando carpetas"):
                 # Definir los mensajes para la API
                 messages = [
                     {"role": "system", "content": "Reparación de código"},
-                    {"role": "user", "content": f"fix the code, just give me back the code and no comments:\n{content}"}
+                    {"role": "user", "content": f"context: {context}\nfix the code, just give me back the code and no comments:\n{content}"}
                 ]
 
                 # Realizar la solicitud a la API
