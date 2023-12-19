@@ -17,6 +17,22 @@ def test_equals_true(out_file_tested:str,out_file_reference:str,print_result=Tru
             print(f"TEST FAILED: {out_file_tested}")
     return int(test_answer)
 
+def test_directory(directory:str,data_dir = "..\\icpc2021data",print_result=True) -> None:
+    for dirpath, dirnames, filenames in os.walk(directory):
+        # print(f'Visited directory: {dirpath}')
+        # print(f'Subdirectories: {dirnames}')
+        # print(f'Files: {filenames}')
+        for filename in filenames:
+            if filename.endswith(".out"):
+                try:
+                    file_path = os.path.join(dirpath, filename)
+                    problem_name = dirpath.split("\\")[-1]
+                    ref_output_dir = os.path.join(data_dir,problem_name)
+                    ref_output_file = os.path.join(ref_output_dir,"sample-1.ans")
+                    test_equals_true(file_path,ref_output_file,print_result)
+                except Exception as e:
+                    print(f"ERROR: {file_path}")
+
 if __name__ == "__main__":
 
     reference_dir = "..\\icpc2021programs\\cpp\\reference"
