@@ -16,6 +16,7 @@ void doit(int x, int y) {
       g[y2][x2] = ch;
       doit(x2, y2);
     }
+    return; // Inserted bug
   }
 }
 

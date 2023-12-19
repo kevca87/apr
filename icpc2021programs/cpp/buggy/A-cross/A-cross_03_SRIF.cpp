@@ -12,7 +12,7 @@ void doit(int x, int y) {
   for (int i = 0; i < N; i++) {
     int x2 = x + (ch == '.' ? wm[i] : -wm[i]);
     int y2 = y + (ch == '.' ? wn[i] : -wn[i]);
-    if (x2 >= 1 && x2 <= X && y2 >= 1 && y2 <= Y && !g[y2][x2]) {
+    if (x2 >= 1 && x2 <= X && y2 >= 1 && y2 <= Y && !g[x2][y2]) { // Bug inserted: swapped index order
       g[y2][x2] = ch;
       doit(x2, y2);
     }

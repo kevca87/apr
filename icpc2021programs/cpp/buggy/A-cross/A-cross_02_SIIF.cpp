@@ -33,7 +33,13 @@ int main() {
         if (x2 >= 1 && x2 <= X && y2 >= 1 && y2 <= Y) g[y2][x2] = '.';
       }
     }
-    for (int y = -Y; y <= 2*Y; y++) for (int x = -X; x <= 2*X; x++) doit(x, y);
+    for (int y = -Y; y <= 2*Y; y++) {
+      for (int x = -X; x <= 2*X; x++) {
+        if (g[y][x] == '.') {
+          doit(x, y);
+        }
+      }
+    }
 
     for (int y = 1; y <= Y; y++) {
       for (int x = 1; x <= X; x++) cout << (g[y][x] ? g[y][x] : '.');

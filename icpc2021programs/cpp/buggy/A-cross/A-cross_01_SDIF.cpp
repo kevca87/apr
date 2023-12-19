@@ -8,7 +8,6 @@ vector<int> wm, wn;
 
 void doit(int x, int y) {
   char ch = (x >= 1 && x <= X && y >= 1 && y <= Y ? g[y][x] : '.');
-  if (!ch) return;
   for (int i = 0; i < N; i++) {
     int x2 = x + (ch == '.' ? wm[i] : -wm[i]);
     int y2 = y + (ch == '.' ? wn[i] : -wn[i]);
