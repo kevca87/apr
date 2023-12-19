@@ -1,0 +1,39 @@
+(SDIF)  Delete  if,  else,  else  if,  for  or  while 
+(SIIF)  Insert  if,  else,  else  if,  for  or  while
+(SRIF)  Replace  if,  else,  else  if,  for  or  while 
+(SIRT)  Insert  return
+(SDIB)  Delete/Insert  break  or  continue 
+(SDLA)  Delete  assignment
+(SISA)  Insert  assignment 
+(SDFN)  Delete  function  call
+(SISF)  Insert  function  call
+(STYP)  Replace  variable  declaration  type
+(SMOV)  Move  statement
+(SMVB)  Move  brace  up/down
+(ORRN)  Replace  relational  operator
+(OLLN)  Replace  logical  operator
+(OILN)  Tighten  condition  or  loosen  condition
+(OEDE)  Replace  =  with  ==  or  vice  versa
+(OICD)  Insert  a  conditional  operator
+(OAAN)  Replace  arithmetic  operator
+(OAIS)  Insert/Delete  arithmetic  operator 
+(OAID)  Insert/Delete/Replace  ++ or  −−
+(OMOP)  Modify  operator  precedence
+(OFFN)  Alternative  function  call
+(OFPF)  Replace  print  format
+(OFPO)  Modify  function  parameter  order
+(OIRO)  Insert/Delete  Reference  Operator
+(OITC)  Insert  type  cast  operator
+(DCCR)  Replace  constant  with  variable/constant
+(DRVA)  Replace  a  read  variable  with  a  variable/constant
+(DRWV)  Replace  a  write  variable  with  a  variable
+(DMAA)  Insert/Replace  array  access
+(DRAC)  Replace  constant  of  array  initialization
+(DCCA)  Modify  array  size
+(HDMS)  Delete  multiple  non-branch  statements
+(HIMS)  Insert  multiple  non-branch  statements
+(HDIM)  Delete  and  insert  multiple  non-branch  statements
+(HBRN)  Delete/Insert  branch  and  non-branch  statements
+(HEXP)  Delete/Insert/Replace  operators  &  operands
+(HCOM)  Insert/Replace  statements  and  expressions
+(HOTH)  Other  higher  order  defect  classes
