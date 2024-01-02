@@ -3,12 +3,12 @@ def main():
         try:
             N, M = map(int, input().split())
         except:
-            break  # Exit the loop if input is not valid
+            break  
 
         if N > 200:
             N = 200
 
-        pw = [0, 0]  # To adjust indices to match C++ code
+        pw = [0, 0]  
         q = 2
         while True:
             pw.append(q ** N)

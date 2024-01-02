@@ -1,0 +1,1 @@
+An r x c motif grid and R x C mosaic grid of tiles (Dimensions ≤ 1000). Program: Output number and locations of motif occurrences in mosaic. Constraints: Tile colors 1-100,motif colors 0-100 (0 = empty).

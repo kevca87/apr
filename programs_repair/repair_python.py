@@ -69,7 +69,7 @@ for folder in tqdm(buggy_programs_folders, desc="Procesando carpetas"):
                 # Definir los mensajes para la API
                 messages = [
                     {"role": "system", "content": "Reparación de código"},
-                    {"role": "user", "content": f"context: {context}\nfix the code, just give me back the code and no comments:\n{content}"}
+                    {"role": "user", "content": f"{context}\nfix the code, just give me back the code and no comments:\n{content}"}
                 ]
 
                 # Realizar la solicitud a la API

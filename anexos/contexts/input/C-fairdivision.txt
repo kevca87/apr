@@ -1,0 +1,4 @@
+input 
+8 51000
+output
+1 2

@@ -1,0 +1,4 @@
+input 
+4 1 28
+output 
+0.96
