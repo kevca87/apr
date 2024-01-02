@@ -24,7 +24,7 @@ while True:
         wn = [0] * N
         for i in range(N):
             line = input().split()
-            wm[i] = int(line[0])
+            wm[i+1] = int(line[0])
             wn[i] = int(line[1])
             B = int(line[2])
             pos = 3
