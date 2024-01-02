@@ -61,6 +61,10 @@ for folder in tqdm(buggy_programs_folders, desc="Procesando carpetas"):
                 # Leer el contenido del archivo
                 with open(os.path.join(buggy_codes_path, folder, codigo), 'r') as file:
                     content = file.read()
+                    for line in content.split('\n'):
+                        if line.startswith('#'):
+                            content = content.replace(line, '')
+                    content.join('\n')
 
                 # Definir los mensajes para la API
                 messages = [

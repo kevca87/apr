@@ -19,10 +19,6 @@ def run_test(input_file, expected_output_file, codigo, folder):
     try:
         with open(input_file, 'r') as infile, open(expected_output_file, 'r') as outfile:
             input_text = infile.read()
-            for line in input_text.split('\n'):
-                if line.startswith('#'):
-                    input_text = input_text.replace(line, '')
-            input_text.join('\n')
             expected_output = outfile.read()
         
         result = subprocess.run(
