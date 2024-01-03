@@ -33,7 +33,7 @@ openai.api_key = api_key
 
 # Procesar las carpetas con códigos con errores
 buggy_programs_folders = os.listdir(buggy_codes_path)
-buggy_programs_folders = buggy_programs_folders[5:]
+buggy_programs_folders = buggy_programs_folders[11:]
 print(buggy_programs_folders)
 
 for folder in tqdm(buggy_programs_folders, desc="Procesando carpetas"):
