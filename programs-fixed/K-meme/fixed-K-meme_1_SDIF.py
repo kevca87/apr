@@ -1,5 +1,6 @@
 import random
 
+
 class Point:
     def __init__(self, x, y):
         self.x = x
@@ -17,7 +18,7 @@ class Point:
     def add2(self, p):
         self.x += p.x
         self.y += p.y
-        
+
     def __lt__(self, p):
         return self.x * cmpx + self.y * cmpy < p.x * cmpx + p.y * cmpy
 
@@ -36,12 +37,14 @@ class Point:
     def print(self):
         print("(",self.x,",",self.y,")")
 
+
 def init():
     random.seed()
     global cmpx, cmpy, ch, p, ret
     cmpx = 1
     cmpy = 0
     ret = 0 
+
 
 def doit(x):
     
@@ -62,6 +65,7 @@ def doit(x):
         mxdiff = max(mxdiff, mx + mn)
     return (-mxtot + mndiff, -mntot + mxdiff)
 
+
 def tryAngle(dir):
     global cmpx, cmpy, ret
     cmpx = dir.x
@@ -74,6 +78,7 @@ def tryAngle(dir):
     ret = max(ret, mn.lensqr())
     ret = max(ret, mx.lensqr())
     return (mn, mx)
+
 
 def traceHull(a, b):
     if a == b:

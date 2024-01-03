@@ -2,7 +2,7 @@ import json
 import os
 import datetime
 
-def save_results_as_json(folder, codigo, tests_passed, total_tests, modelo):
+def save_results_as_json(folder, codigo, tests_passed, total_tests, modelo, prompt_type):
     results_folder = f"Results/py/{folder}"
     os.makedirs(results_folder, exist_ok=True)
     file_path = f"{results_folder}/{codigo}.json"
@@ -11,7 +11,7 @@ def save_results_as_json(folder, codigo, tests_passed, total_tests, modelo):
 
     # Crear una entrada con marca de tiempo
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    entry_key = f"{codigo} - {timestamp} - {modelo}"
+    entry_key = f"{codigo} - {timestamp} - {modelo} - {propmt_type}"
     results_data = {
         entry_key: f"{tests_passed} codigos pasados de {total_tests} total. Estado: {result_status}"
     }

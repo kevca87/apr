@@ -7,6 +7,8 @@ from dotenv import load_dotenv
 # Cargar las variables de entorno del archivo .env
 load_dotenv()
 model_name = os.getenv("MODEL_NAME")
+promp_type = os.getenv("PROMPT_TYPE")
+
 
 
 total_tests_run = 0
@@ -73,7 +75,7 @@ for folder in folders:
                             total_tests_passed += 1
             
             print_test_result(codigo, program_tests_passed, len(os.listdir(f'icpc2021data/{folder}')))
-            save_results_as_json(folder, codigo, program_tests_passed, total_tests_for_program, model_name)
+            save_results_as_json(folder, codigo, program_tests_passed, total_tests_for_program, model_name, promp_type)
 
     else:
         print("No existen códigos arreglados en esta carpeta.")

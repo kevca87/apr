@@ -26,6 +26,7 @@ api_key = os.getenv("API_KEY")
 buggy_codes_path = os.getenv("BUGGY_CODES_PATH")
 fixed_codes_path = os.getenv("FIXED_CODES_PATH")
 model_name = os.getenv("MODEL_NAME")
+promp_type = os.getenv("PROMPT_TYPE")
 
 # Configurar la API key de OpenAI
 openai.api_key = api_key
@@ -36,7 +37,7 @@ buggy_programs_folders = os.listdir(buggy_codes_path)
 for folder in tqdm(buggy_programs_folders, desc="Procesando carpetas"):
 
     # Construir la ruta al archivo de contexto
-    context_file_path = os.path.join("anexos", "contexts", f"{folder}.txt")
+    context_file_path = os.path.join("anexos","contexts", f"{promp_type}", f"{folder}.txt")
 
     try:
         # Abrir y leer el archivo de contexto
@@ -50,7 +51,7 @@ for folder in tqdm(buggy_programs_folders, desc="Procesando carpetas"):
     print_info(f"Arreglando códigos de la carpeta {folder}")
     print_info(f"Contexto para la carpeta: {context}")
 
-    with open(f"anexos/contexts/{folder}.txt", 'r') as file:
+    with open(f"anexos/contexts/{promp_type}/{folder}.txt", 'r') as file:
         context = file.read()
 
     codigos = os.listdir(os.path.join(buggy_codes_path, folder))

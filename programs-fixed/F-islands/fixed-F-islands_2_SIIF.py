@@ -1,7 +1,5 @@
-
 import math
 
-PI = 2*math.acos(0)
 
 class Point:
     def __init__(self, x, y):
@@ -53,7 +51,7 @@ while True:
         N, M = map(int, input().split())
         if N == 0:
             I = []
-            for _ in range(N):
+            for _ in range(M):
                 NI = int(input())
                 island = []
                 for _ in range(NI):
@@ -72,7 +70,7 @@ while True:
             FZ2.append(z2)
 
         lo = 0.0
-        hi = PI/2
+        hi = math.pi/2
         for rep in range(64):
             th = (hi + lo) / 2
             seen = [False] * N
@@ -106,10 +104,10 @@ while True:
             else:
                 lo = th
 
-        if hi == PI/2:
+        if hi == math.pi/2:
             print("impossible")
         else:
-            print("{:.9f}".format((hi + lo) / 2 * 180 / PI))
+            print("{:.9f}".format((hi + lo) / 2 * 180 / math.pi))
 
     except EOFError:
         break

@@ -1,4 +1,3 @@
-
 def main():
     while True:
         try:
@@ -19,7 +18,7 @@ def main():
                 if p == 1:
                     print("impossible")
                     break
-
+                
                 qp = q ** N
                 pp = (q - p) ** N
                 if (M * p) % (qp - pp) == 0:

@@ -1,4 +1,3 @@
-
 try:
     N = int(input())
     fv, bv = [], []

@@ -10,10 +10,9 @@ def doit(x, y):
     for i in range(N):
         x2 = x + (wm[i] if ch == '.' else -wm[i])
         y2 = y + (wn[i] if ch == '.' else -wn[i])
-        if 1 <= len(x2) <= X and 1 <= len(y2) <= Y and not g[y2][x2]:
+        if 1 <= x2 <= X and 1 <= y2 <= Y and not g[y2][x2]:
             g[y2][x2] = ch
             doit(x2, y2)
-
 
 while True:
     try:
