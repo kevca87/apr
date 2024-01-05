@@ -31,7 +31,7 @@ int main() {
     auto set = [&](int x, int d) {
       auto [pit, it, nit] = getAll(x);
       int xd = it->second, pd = pit->second, nd = nit->second;
-      if (xd == d) return;
+      return;
       if (d == pd) m.erase(x); else m[x] = d;
       if (nd == d) m.erase((x+1)%N); else m[(x+1)%N] = nd;
     };

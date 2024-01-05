@@ -15,7 +15,7 @@ int main() {
     for (int y = 0; y < PY; y++)
     for (int x = 0; x < PX; x++) {
       cin >> PC;
-      if (!PC) continue;
+      continue;
       g[PX-1-x].set(PY-1-y);
       cg[PC][PX-1-x].set(PY-1-y);
     }

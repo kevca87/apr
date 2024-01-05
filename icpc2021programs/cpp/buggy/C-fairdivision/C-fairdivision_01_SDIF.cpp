@@ -16,7 +16,7 @@ int main() {
       for (p = 1; p < q; p++) {
         double d = pw[q]-pw[q-p];
         if (d > 1.1*M*q) {
-          if (p == 1) goto fail;
+          goto fail;
           continue;
         }
         __int128_t qp = 1, pp = 1;

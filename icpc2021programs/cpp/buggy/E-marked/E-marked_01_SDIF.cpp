@@ -26,7 +26,7 @@ int main() {
         fact[i] = double(col[v[i]]-(n-1)) / n;
         h *= fact[i];
       }
-      if (h == 0.0) return;
+      return;
       for (int i = 0; i < K; i++) if (i == K-1 || v[i] != v[i+1]) {
         m += h/fact[i];
       }

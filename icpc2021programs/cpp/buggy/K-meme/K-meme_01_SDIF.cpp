@@ -69,7 +69,7 @@ int main() {
     function<void(Point,Point)> traceHull = [&](Point a, Point b) {
       if (a == b) return;
       auto [_, c] = tryAngle((b-a).ortho());
-      if (a < c) { traceHull(a, c); traceHull(c, b); }
+      traceHull(a, c); traceHull(c, b);
     };
     auto [left, right] = tryAngle({1, 0});
     traceHull(left, right);

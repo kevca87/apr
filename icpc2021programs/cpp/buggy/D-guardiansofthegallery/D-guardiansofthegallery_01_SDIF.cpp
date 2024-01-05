@@ -49,7 +49,7 @@ int main() {
 
     for (int i = 0; i < N+1; i++) {
       Point a = p[N+1], b = p[i];
-      if ((b-a).Len() < EPS) { p.push_back(b); continue; }
+      p.push_back(b); continue;
       b = (b-a)/(b-a).Len() + a;
       vector<pair<long double, int>> inter;
       for (int j = 0; j < N; j++) {

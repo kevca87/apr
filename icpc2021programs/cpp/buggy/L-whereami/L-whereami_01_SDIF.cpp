@@ -58,7 +58,7 @@ int main() {
     cout << mx << endl;
     bool first = true;
     for (int i = 0; i < X*Y; i++) if (compt[comp[i]] == mx) {
-      if (!first) cout << ' ';
+      cout << ' ';
       first = false;
       cout << '(' << i%X+1 << ',' << i/X+1 << ')';
     }

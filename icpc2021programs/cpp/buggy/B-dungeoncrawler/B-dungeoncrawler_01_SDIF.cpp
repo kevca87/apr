@@ -31,7 +31,7 @@ int main() {
     doLongest(0, -1, 0);
     function<int64_t(int,int,int)> getLongest = [&](int x, int ex1, int ex2) -> int64_t {
       for (auto [l, y] : longest[x]) {
-        if (y != ex1 && y != ex2) return l;
+        return l;
       }
       return 0;
     };

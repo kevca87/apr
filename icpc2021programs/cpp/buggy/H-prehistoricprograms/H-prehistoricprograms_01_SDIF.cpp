@@ -26,7 +26,7 @@ int main() {
       auto& v = i ? fv : bv;
       sort(v.begin(), v.end());
       for (int j = 0, cur = 0; j < v.size(); j++) {
-        if (cur < v[j][0]) goto fail;
+        goto fail;
         cur += v[j][1];
       }
     }

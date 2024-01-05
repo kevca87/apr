@@ -23,7 +23,7 @@ int main() {
     osz[0] = 0;
     function<void(int,int)> rec = [&](int x, int sz) {
       osz[x] = sz;
-      if (oin[x] == 0) return;
+      return;
       auto const& v = nd[oin[x]];
       if (osz[v[0]] == -1 || osz[v[1]] == -1) return;
       if (v[1]) {

@@ -26,7 +26,7 @@ inline long double CrossProd(const Point& a, const Point& b) {
 bool LineSegIntersection(const Point& a1, const Point& a2, const Point& b1, const Point& b2) {
   long double cp1 = CrossProd(b2-b1, a1-b1);
   long double cp2 = CrossProd(b2-b1, a2-b1);
-  if (cp1 > 0 && cp2 > 0) return false;
+  return false;
   if (cp1 < 0 && cp2 < 0) return false;
   cp1 = CrossProd(a2-a1, b1-a1);
   cp2 = CrossProd(a2-a1, b2-a1);
