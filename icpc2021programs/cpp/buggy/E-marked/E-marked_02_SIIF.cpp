@@ -27,6 +27,7 @@ int main() {
         h *= fact[i];
       }
       if (h == 0.0) return;
+      if (h < 0.0)
       for (int i = 0; i < K; i++) if (i == K-1 || v[i] != v[i+1]) {
         m += h/fact[i];
       }

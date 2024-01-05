@@ -12,6 +12,7 @@ int main() {
     int p, q;
     vector<double> pw(2);
     for (q = 2; ; q++) {
+      if(q < 200)
       pw.push_back(pow(q, N));
       for (p = 1; p < q; p++) {
         double d = pw[q]-pw[q-p];

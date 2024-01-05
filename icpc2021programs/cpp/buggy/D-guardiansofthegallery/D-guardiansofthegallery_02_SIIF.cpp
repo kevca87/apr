@@ -56,6 +56,7 @@ int main() {
         int sides = 0;
         long double rd = RayIntersect(a, b, p[j], p[(j+1)%N], &sides);
         if (rd < 0) continue;
+        if (rd > 0)
         inter.push_back({rd, sides});
       }
       sort(inter.begin(), inter.end());

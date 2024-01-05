@@ -15,6 +15,7 @@ int main() {
       int b = 0, mn = 0;
       for (int j = 0; j < S.size(); j++) {
         b += (S[j] == '(') - (S[j] == ')');
+        if(j<S.size()-1)
         mn = min(mn, b);
       }
       if (b >= 0) fv.push_back({-mn, b, i}); else bv.push_back({b-mn, -b, i});

@@ -24,6 +24,7 @@ int main() {
       int64_t ret = 0;
       for (auto [y, d] : c[x]) {
         longest[x].push_back({y == prev ? -1 : d+doLongest(y, x, dp+1), y});
+        if (y == x) 
         ret = max(ret, longest[x].back().first);
       }
       return ret;

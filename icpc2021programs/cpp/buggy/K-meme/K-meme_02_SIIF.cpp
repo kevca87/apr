@@ -62,6 +62,7 @@ int main() {
         return {-mxtot+mndiff, -mntot+mxdiff};
       };
       auto [mn, mx] = doit(1);
+      if (ch[0].size() == 0)
       ret = max(ret, mx.lensqr());
       ret = max(ret, mn.lensqr());
       return {mn, mx};

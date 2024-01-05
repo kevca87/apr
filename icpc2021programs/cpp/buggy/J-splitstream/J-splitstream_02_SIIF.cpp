@@ -13,6 +13,7 @@ int main() {
       char ch;
       int x, y, z;
       cin >> ch >> x >> y >> z;
+      if(y!=x)
       mx = max<int>({mx, x, y, z});
       if (ch == 'S') nd.push_back({x, 0, y, z}); else nd.push_back({x, y, z, 0});
     }

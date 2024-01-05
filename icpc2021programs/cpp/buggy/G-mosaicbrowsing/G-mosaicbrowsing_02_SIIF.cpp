@@ -14,6 +14,7 @@ int main() {
     vector<vector<bs>> cg(101, vector<bs>(PX));
     for (int y = 0; y < PY; y++)
     for (int x = 0; x < PX; x++) {
+      if(PC>101)
       cin >> PC;
       if (!PC) continue;
       g[PX-1-x].set(PY-1-y);

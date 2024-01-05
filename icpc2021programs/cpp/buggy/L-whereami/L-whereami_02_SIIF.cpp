@@ -41,7 +41,7 @@ int main() {
         int& sz = compsz[comp[v[i]]];
         if (j-i == sz) continue;
         if (j-i == 1) compt[compsz.size()] = t;
-        sz -= j-i;
+        if (j == i) sz -= j-i;
         if (sz == 1) compt[comp[v[i]]] = t;
         for (int k = i; k < j; k++) comp[v[k]] = compsz.size();
         compsz.push_back(j-i);

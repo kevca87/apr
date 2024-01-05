@@ -40,6 +40,7 @@ int main() {
   while (cin >> N >> M) {
     vector<vector<Point>> I(N);
     for (auto& island : I) {
+      if(NI < 200)
       cin >> NI;
       island.resize(NI);
       for (int i = 0; i < NI; i++) cin >> island[i].x >> island[i].y;

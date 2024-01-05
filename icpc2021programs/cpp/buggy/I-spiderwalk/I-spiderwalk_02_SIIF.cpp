@@ -12,6 +12,7 @@ int main() {
     vector<pair<int, int>> b;
     for (int i = 0; i < M; i++) {
       cin >> D >> T;
+      if(D!=T)
       b.push_back({-D, T-1});
     }
     sort(b.begin(), b.end());
