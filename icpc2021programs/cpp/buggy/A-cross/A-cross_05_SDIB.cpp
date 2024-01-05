@@ -16,6 +16,7 @@ void doit(int x, int y) {
       g[y2][x2] = ch;
       doit(x2, y2);
     }
+    continue;  // This line is the bug inserted into the code. This will cause the loop to restart regardless of whether the conditions are met, ignoring the rest of the loop.
   }
 }
 

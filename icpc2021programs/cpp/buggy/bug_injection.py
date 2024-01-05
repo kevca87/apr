@@ -4,7 +4,6 @@ import openai
 
 def call_openai_chat_completion(prompt):
     # Set up OpenAI API credentials
-    
 
     # Define the completion parameters
     completion_parameters = {
@@ -20,7 +19,7 @@ def call_openai_chat_completion(prompt):
 
     return completion
 
-file_path = './A-cross/A-cross_04_SIRT.cpp'
+file_path = './A-cross/A-cross_05_SDIB.cpp'
 with open(file_path, 'r') as file:
     file_content = file.read()
     print(file_content)
@@ -47,7 +46,8 @@ messages=[
     {"role": "user", "content": file_content},
     # {"role": "user", "content": "Delete one if, else, else if, for or while"},
     # {"role": "user", "content": "Replace one if, else, else if, for or while"},
-    {"role": "user", "content": "Insert return"},
+    # {"role": "user", "content": "Insert return"},
+    {"role": "user", "content": "Delete or insert a break or continue"},
 ]
 
 print(call_openai_chat_completion(messages))
