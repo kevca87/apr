@@ -1,14 +1,14 @@
 import sys
-sys.setrecursionlimit(10000)  # Establece un límite más alto
+sys.setrecursionlimit(100000)  # Establece un límite más alto
 
 def doit(x, y):
     ch = g[y][x] if (1 <= x <= X and 1 <= y <= Y) else '.'
     if ch == ' ':
         return
     for i in range(N):
-        x2 = x + (wm[i] if ch == '.' else -wm[i])
-        y2 = y + (wn[i] if ch == '.' else -wn[i])
-        
+        x2 = x + (wx[i] if ch == '.' else -wx[i])
+        y2 = y + (wy[i] if ch == '.' else -wy[i])
+
         if 1 <= x2 <= X and 1 <= y2 <= Y:
             if g[y2][x2] == ' ':
                 g[y2][x2] = ch
@@ -18,22 +18,22 @@ while True:
     try:
         X, Y, N = map(int, input().split())
         g = [[' ' for _ in range(X + 1)] for _ in range(Y + 1)]
-        wm = [0] * N
-        wn = [0] * N
+        wx = [0] * N
+        wy = [0] * N
         for i in range(N):
             line = input().split()
-            wm[i] = int(line[0])
-            wn[i] = int(line[1])
+            wx[i] = int(line[0])
+            wy[i] = int(line[1])
             B = int(line[2])
             pos = 3
-            for j in range(B):  
+            for j in range(B):
                 x = int(line[pos])
                 pos = pos + 1
                 y = int(line[pos])
                 pos = pos + 1
                 g[y][x] = '#'
-                x2 = x - wm[i]
-                y2 = y - wn[i]
+                x2 = x - wx[i]
+                y2 = y - wy[i]
                 if 1 <= x2 <= X and 1 <= y2 <= Y:
                     g[y2][x2] = '.'
 

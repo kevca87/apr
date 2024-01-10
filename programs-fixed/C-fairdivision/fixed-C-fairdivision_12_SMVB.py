@@ -18,6 +18,7 @@ def main():
                     if p == 1:
                         print("impossible")
                         break
+                    continue
 
                 qp = q ** N
                 pp = (q - p) ** N

@@ -6,7 +6,7 @@ try:
         S = input()
         b = 0
         mn = 0
-        for j in range(len(S)-1):
+        for j in range(len(S) - 1):
             b += (S[j+1] == '(') - (S[j] == ')')
             mn = min(mn, b)
         if b >= 0:

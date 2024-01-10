@@ -40,7 +40,7 @@ def main():
 
     t = 0
     while len(compsz) < X * Y:
-        if len(obs[t]) != 0:
+        if len(obs[t]) !=0:
             v = obs[t]
             v.sort(key=lambda x: comp[x])
             v.reverse()
@@ -69,6 +69,7 @@ def main():
     
     mx = max(compt)
     tot = sum(compt)
+
 
     first = True
     for i in range(X * Y):

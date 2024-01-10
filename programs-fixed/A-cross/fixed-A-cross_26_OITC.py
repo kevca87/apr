@@ -1,6 +1,5 @@
 import sys
-sys.setrecursionlimit(10000)  # Establece un límite más alto
-
+sys.setrecursionlimit(10000) 
 
 def doit(x, y):
     ch = g[y][x] if (1 <= x <= X and 1 <= y <= Y) else '.'
@@ -14,7 +13,6 @@ def doit(x, y):
             if g[y2][x2] == ' ':
                 g[y2][x2] = ch
                 doit(x2, y2)
-
 
 while True:
     try:
@@ -45,13 +43,13 @@ while True:
 
         for y in range(1, Y + 1):
             for x in range(1, X + 1):
-                print(g[y][x] if g[y][x] != ' ' else '.', end='')
+                print(g[y][x] if (g[y][x] != ' ') else '.', end='')
             print()
         print()
 
         for y in range(1, Y + 1):
             for x in range(1, X + 1):
-                print(g[y][x] if g[y][x] != ' ' else '#', end='')
+                print(g[y][x] if (g[y][x] != ' ') else '#', end='')
             print()
     except EOFError:
         break

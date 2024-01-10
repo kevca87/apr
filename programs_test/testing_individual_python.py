@@ -10,7 +10,7 @@ init(autoreset=True)
 # Establecer el nuevo límite de recursión
 
 # cambiar al programa que se desea ejecutar
-programa = "J-splitstream"
+programa = "H-prehistoricprograms"
 
 # cambiar al directorio donde se encuentran los archivos de prueba
 
@@ -32,7 +32,7 @@ def run_test(input_file, expected_output_file):
             input=input_text,
             text=True,
             capture_output=True,
-            timeout=70
+            timeout=0.5
         )
 
         if result.returncode != 0:

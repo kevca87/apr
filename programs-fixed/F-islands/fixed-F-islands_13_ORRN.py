@@ -1,20 +1,18 @@
-
 import math
 
 PI = 2 * math.acos(0)
-
 
 class Point:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-
+    
     def __sub__(self, p):
         return Point(self.x - p.x, self.y - p.y)
-
+    
     def __add__(self, p):
         return Point(self.x + p.x, self.y + p.y)
-
+    
     def __mul__(self, c):
         return Point(self.x * c, self.y * c)
 
@@ -60,6 +58,7 @@ while True:
                 x, y = map(float, input().split())
                 island.append(Point(x, y))
             I.append(island)
+        
         F1 = []
         F2 = []
         FZ1 = []
@@ -110,6 +109,5 @@ while True:
             print("impossible")
         else:
             print("{:.9f}".format((hi + lo) / 2 * 180 / PI))
-
     except EOFError:
         break

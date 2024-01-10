@@ -28,8 +28,8 @@ def main():
         for x in range(X):
             if g[y][x] == 'X':
                 i = 0
-                for sy in range(-y, Y-y): # Change range
-                    for sx in range(-x, X-x): # Change range
+                for sy in range(Y):
+                    for sx in range(X):
                         obs[dist[y - sy + 100][x - sx + 100]].append(i)
                         i+=1
 
@@ -41,7 +41,6 @@ def main():
     t = 0
     while len(compsz) < X * Y:
         if len(obs[t]) !=0:
-            print(f"t={t}")
             v = obs[t]
             v.sort(key=lambda x: comp[x])
             v.reverse()

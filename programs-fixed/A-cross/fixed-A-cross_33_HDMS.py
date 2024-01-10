@@ -1,5 +1,6 @@
 import sys
-sys.setrecursionlimit(10000)
+sys.setrecursionlimit(10000)  # Establece un límite más alto
+
 
 def doit(x, y):
     ch = g[y][x] if (1 <= x <= X and 1 <= y <= Y) else '.'
@@ -13,6 +14,7 @@ def doit(x, y):
             if g[y2][x2] == ' ':
                 g[y2][x2] = ch
                 doit(x2, y2)
+
 
 while True:
     try:

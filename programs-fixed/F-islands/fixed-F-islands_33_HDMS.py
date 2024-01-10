@@ -1,4 +1,3 @@
-Aquí tienes el código corregido:
 
 import math
 
@@ -109,7 +108,7 @@ while True:
         if hi == PI/2:
             print("impossible")
         else:
-            print("{:.6f}".format(hi))
+            print("{:.9f}".format(hi))
 
     except EOFError:
         break

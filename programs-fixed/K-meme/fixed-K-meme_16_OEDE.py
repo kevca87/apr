@@ -1,40 +1,41 @@
+
 import random
 
 class Point:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-    
+
     def __neg__(self):
         return Point(-self.x, -self.y)
-    
+
     def __add__(self, p):
         return Point(self.x + p.x, self.y + p.y)
-    
+
     def __sub__(self, p):
         return Point(self.x - p.x, self.y - p.y)
-    
+
     def add2(self, p):
         self.x += p.x
         self.y += p.y
-    
+        
     def __lt__(self, p):
         return self.x * cmpx + self.y * cmpy < p.x * cmpx + p.y * cmpy
-    
+
     def __gt__(self, p):
         return self.x * cmpx + self.y * cmpy > p.x * cmpx + p.y * cmpy
-    
+
     def __eq__(self, p):
         return self.x == p.x and self.y == p.y
-    
+
     def ortho(self):
         return Point(-self.y, self.x)
-    
+
     def lensqr(self):
         return self.x * self.x + self.y * self.y
     
     def print(self):
-        print("(",self.x,",",self.y,")")
+        print("(", self.x, ",", self.y, ")")
 
 def init():
     random.seed()
@@ -84,7 +85,6 @@ def traceHull(a, b):
         traceHull(a, c)
         traceHull(c, b)
 
-
 init()
 N = int(input())
 
@@ -100,7 +100,6 @@ for i in range(1, N + 1):
         p[i] = Point(x, y)
     else:
         ch[i] = list(map(int, line[1:]))
-
 
 ret = 0
 angles = tryAngle(Point(1, 0))

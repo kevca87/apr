@@ -22,6 +22,7 @@ def main():
                 qp = q ** N
                 pp = (q - p) ** N
                 if (M * p) % (qp - pp) == 0:
+                    print(f"{p} {q}")
                     break
             else:
                 q += 1

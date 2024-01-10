@@ -22,7 +22,7 @@ def main():
 
                 qp = q ** N
                 pp = (q - p) ** N
-                if (M * p) % (qp - pp) == 0:  # Change = to ==
+                if (M * p) % (qp - pp) == 0:  # Fixed the comparison operator
                     print(p, q)
                     break
             else:

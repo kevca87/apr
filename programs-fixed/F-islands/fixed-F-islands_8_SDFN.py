@@ -1,6 +1,6 @@
 import math
 
-PI = 2 * math.acos(0)
+PI = 2*math.acos(0)
 
 class Point:
     def __init__(self, x, y):
@@ -24,11 +24,11 @@ class Point:
 
 
 def DotProd(a, b):
-    return a.x * b.x + a.y * b.y
+    return a.x*b.x + a.y*b.y
 
 
 def CrossProd(a, b):
-    return a.x * b.y - a.y * b.x
+    return a.x*b.y - a.y*b.x
 
 
 def LineSegIntersection(a1, a2, b1, b2):
@@ -70,7 +70,7 @@ while True:
             FZ2.append(z2)
 
         lo = 0.0
-        hi = PI / 2
+        hi = PI/2
         for rep in range(64):
             th = (hi + lo) / 2
             seen = [False] * N
@@ -104,8 +104,10 @@ while True:
             else:
                 lo = th
 
-        if hi == PI / 2:
+        if hi == PI/2:
             print("impossible")
+        else:
+            print("{:.9f}".format(hi))
 
     except EOFError:
         break

@@ -1,12 +1,13 @@
+
 from typing import List
 from collections import defaultdict
 
 def main():
-    
+
     X, Y = map(int, input().split())
     g = [input().strip() for _ in range(Y)]
     g.reverse()
-    
+
     dist = [[0] * 201 for _ in range(201)]
     x, y, dx, dy, step, stepn, cur = 100, 100, 0, 1, 0, 1, 0
 
@@ -31,17 +32,15 @@ def main():
                 for sy in range(Y):
                     for sx in range(X):
                         obs[dist[y - sy + 100][x - sx + 100]].append(i)
-                        i+=1
+                        i += 1
 
     comp = [0] * (X * Y)
     compt = [0] * (X * Y)
     compsz = [0]
-    c = [X * Y]
-
-
     t = 0
+
     while len(compsz) < X * Y:
-        if len(obs[t]) !=0:
+        if len(obs[t]) != 0:
             v = obs[t]
             v.sort(key=lambda x: comp[x])
             v.reverse()
@@ -50,10 +49,10 @@ def main():
                 j += 1
                 while j < len(v) and comp[v[j]] == comp[v[i]]:
                     j += 1
-                
+
                 sz = compsz[comp[v[i]]]
-                
-                if j - i != sz: 
+
+                if j - i != sz:
                     if j - i == 1:
                         compt[len(compsz)] = t
                     sz -= j - i
@@ -63,11 +62,10 @@ def main():
                     for k in range(i, j):
                         comp[v[k]] = len(compsz)
                     compsz.append(j - i)
-                    
+
                 i = j
         t += 1
 
-    
     mx = max(compt)
     tot = sum(compt)
 

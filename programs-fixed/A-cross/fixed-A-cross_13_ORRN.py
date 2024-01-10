@@ -1,5 +1,6 @@
 import sys
 
+
 sys.setrecursionlimit(5000)
 
 def doit(x, y):
@@ -29,7 +30,9 @@ while True:
         wm[i], wn[i] = entrada[0], entrada[1]
         B = entrada[2]
         boundary_coordinates = entrada[3:]
+
         assert len(boundary_coordinates) == B * 2
+
         for j in range(0, len(boundary_coordinates), 2):
             x, y = boundary_coordinates[j], boundary_coordinates[j + 1]
             g[y][x] = '#'

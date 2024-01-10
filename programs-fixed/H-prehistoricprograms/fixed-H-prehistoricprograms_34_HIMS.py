@@ -25,13 +25,13 @@ try:
             if cur < v[j][0]:
                 raise Exception
             cur += v[j][1]
-
+        
     else:
         bv.reverse()
         for v in fv:
             print(v[2]+1)
         for v in bv:
             print(v[2]+1)
-
+    
 except Exception:
     print("impossible")

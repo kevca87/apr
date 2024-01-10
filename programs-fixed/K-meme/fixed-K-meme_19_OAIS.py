@@ -1,5 +1,5 @@
-import random
 
+import random
 
 class Point:
     def __init__(self, x, y):
@@ -18,11 +18,13 @@ class Point:
     def add2(self, p):
         self.x += p.x
         self.y += p.y
-
+    
     def __lt__(self, p):
+        global cmpx, cmpy
         return self.x * cmpx + self.y * cmpy < p.x * cmpx + p.y * cmpy
 
     def __gt__(self, p):
+        global cmpx, cmpy
         return self.x * cmpx + self.y * cmpy > p.x * cmpx + p.y * cmpy
 
     def __eq__(self, p):
@@ -33,21 +35,19 @@ class Point:
 
     def lensqr(self):
         return self.x * self.x + self.y * self.y
-
+    
     def print(self):
-        print("(", self.x, ",", self.y, ")")
-
+        print("(",self.x,",",self.y,")")
 
 def init():
     random.seed()
     global cmpx, cmpy, ch, p, ret
     cmpx = 1
     cmpy = 0
-    ret = 0
-
+    ret = 0 
 
 def doit(x):
-
+    global ch, p
     if len(ch[x]) == 0:
         return (p[x], p[x])
     result = doit(ch[x][0])
@@ -65,27 +65,25 @@ def doit(x):
         mxdiff = max(mxdiff, mx + mn)
     return (-mxtot + mndiff, -mntot + mxdiff)
 
-
 def tryAngle(dir):
-    global cmpx, cmpy, ret  # Add 'ret' to the list of global variables
+    global cmpx, cmpy, ret
     cmpx = dir.x
     cmpy = dir.y
     result = doit(1)
-
+    
     mn = result[0]
     mx = result[1]
-
+    
     ret = max(ret, mn.lensqr())
     ret = max(ret, mx.lensqr())
     return (mn, mx)
 
-
 def traceHull(a, b):
     if a == b:
         return
-    result = tryAngle((b - a).ortho())
+    result = tryAngle((b-a).ortho())
     c = result[1]
-
+ 
     if a < c:
         traceHull(a, c)
         traceHull(c, b)

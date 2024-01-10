@@ -2,6 +2,7 @@ from typing import List
 from collections import defaultdict
 
 def main():
+    
     X, Y = map(int, input().split())
     g = [input().strip() for _ in range(Y)]
     g.reverse()
@@ -35,6 +36,7 @@ def main():
     comp = [0] * (X * Y)
     compt = [0] * (X * Y)
     compsz = [X * Y]
+
 
     t = 0
     while len(compsz) < X * Y:

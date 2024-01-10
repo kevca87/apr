@@ -3,17 +3,17 @@ def main():
         try:
             N, M = map(int, input().split())
         except:
-            break
+            break  # Exit the loop if input is not valid
 
         if N > 200:
             N = 200
 
-        pw = [0, 0]
+        pw = [0, 0]  # To adjust indices to match C++ code
         q = 2
         while True:
             pw.append(q ** N)
             for p in range(1, q):
-                d = pw[q] - dict(pw[q - p])
+                d = pw[q] // pw[q - p]  # Fixing the denominator calculation
                 if d > 1.1 * M * q:
                     if p == 1:
                         print("impossible")

@@ -1,4 +1,3 @@
-
 import sys
 
 sys.setrecursionlimit(5000)
@@ -15,6 +14,7 @@ def doit(x, y):
             g[y2][x2] = ch
             doit(x2, y2)
 
+
 while True:
     try:
         X, Y, N = map(int, input().split())
@@ -29,6 +29,7 @@ while True:
         wm[i], wn[i] = entrada[0], entrada[1]
         B = entrada[2]
         boundary_coordinates = entrada[3:]
+
         assert len(boundary_coordinates) == B * 2
 
         for j in range(0, len(boundary_coordinates), 2):

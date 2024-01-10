@@ -94,7 +94,7 @@ while True:
                                 a = poly[j]
                                 b = poly[(j + 1) % len(poly)]
                                 cnt += LineSegIntersection(a, b, p, Point(mxx + 1337, p.y + 7331))
-                            if cnt % 2 0:
+                            if cnt % 2 == 0:
                                 fail = True
                         if not fail:
                             seen[i] = True

@@ -1,7 +1,12 @@
+
 try:
     N = int(input())
     fv, bv = [], []
-    tot = 0 if N <= 200 else None
+    tot = 0 
+    if N > 200:
+        print("impossible")
+        exit(0)
+
     for i in range(N):
         S = input()
         b = 0
@@ -14,24 +19,34 @@ try:
         else:
             bv.append([b-mn, -b, i])
         tot += b
-    if tot:
-        raise Exception
 
-    for i in range(2):
-        v = fv if i else bv
-        v.sort()
-        cur = 0
-        for j in range(len(v)):
-            if cur < v[j][0]:
-                raise Exception
-            cur += v[j][1]
-        
+    if tot != 0:
+        print("impossible")
+
     else:
-        bv.reverse()
-        for v in fv:
-            print(v[2]+1)
-        for v in bv:
-            print(v[2]+1)
+        fv.sort()
+        bv.sort()
+
+        cur = 0
+        for j in range(len(fv)):
+            if cur < fv[j][0]:
+                print("impossible")
+                exit(0)
+            cur += fv[j][1]
+        
+        cur = 0
+        for j in range(len(bv)):
+            if cur < bv[j][0]:
+                print("impossible")
+                exit(0)
+            cur += bv[j][1]
+        
+        else:
+            bv.reverse()
+            for v in fv:
+                print(v[2]+1)
+            for v in bv:
+                print(v[2]+1)
     
-except Exception:
-    print("impossible")
+except Exception as e:
+    print("Error: ", e)

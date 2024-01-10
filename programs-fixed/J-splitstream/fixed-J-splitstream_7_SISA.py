@@ -1,10 +1,11 @@
 import sys
+
 sys.setrecursionlimit(100000)
 
 M, N, Q = map(int, input().split())
-nd = [[] for _ in range(1)]
+nd = [[] for _ in range(N+1)]
 mx = 0
-for _ in range(1, N+1):
+for _ in range(N):
     ch, x, y, z = input().split()
     x, y, z = int(x), int(y), int(z)
     mx = max(mx, x, y, z)
@@ -28,10 +29,10 @@ def rec(x, sz):
         return
     v = nd[oin[x]]
     if osz[v[0]] == -1 or osz[v[1]] == -1:
-      return
+        return
     if v[1]:
         rec(v[2], osz[v[0]]+osz[v[1]])
-  else:
+    else:
         rec(v[2], (osz[v[0]]+1)//2)
         rec(v[3], osz[v[0]]//2)
 
@@ -59,5 +60,5 @@ for _ in range(Q):
                 k -= sz
         else:
             k = 2 * k - (v[2] == x)
-        x = v[0]
+            x = v[0]
     print(k)

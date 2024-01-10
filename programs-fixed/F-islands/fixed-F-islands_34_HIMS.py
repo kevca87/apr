@@ -1,4 +1,3 @@
-
 import math
 
 PI = 2*math.acos(0)
@@ -83,7 +82,7 @@ while True:
                 poly.append(F2[f] - ortho * (FZ2[f] * math.tan(th)))
                 poly.append(F2[f] + ortho * (FZ2[f] * math.tan(th)))
                 poly.append(F1[f] + ortho * (FZ1[f] * math.tan(th)))
-
+                
                 mxx = 1e7
                 for point in poly:
                     mxx = max(mxx, point.x)

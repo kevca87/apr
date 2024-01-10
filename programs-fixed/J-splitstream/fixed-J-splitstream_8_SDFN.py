@@ -47,7 +47,7 @@ for _ in range(Q):
       if v[1]:
           sz = min(osz[v[0]], osz[v[1]])
           if k <= 2 * sz:
-              x = v[k % 2 - 1]
+              x = v[not k % 2]
               k = (k+1) // 2
           else:
               x = v[osz[v[1]] > osz[v[0]]]

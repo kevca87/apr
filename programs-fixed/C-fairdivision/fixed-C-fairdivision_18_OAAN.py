@@ -14,7 +14,7 @@ def main():
             pw.append(q ** N)
             for p in range(1, q):
                 d = pw[q] - pw[q - p]
-                if d > int(1.1 * M * q):
+                if d > 1.1 * M * q:
                     if p == 1:
                         print("impossible")
                         break

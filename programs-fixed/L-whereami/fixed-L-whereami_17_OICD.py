@@ -1,12 +1,13 @@
+
 from typing import List
 from collections import defaultdict
 
 def main():
-
+    
     X, Y = map(int, input().split())
-    g = [input().strip() for _ in range(Y)]
+    g = [input().strip() for _ in range(X)]
     g.reverse()
-
+    
     dist = [[0] * 201 for _ in range(201)]
     x, y, dx, dy, step, stepn, cur = 100, 100, 0, 1, 0, 1, 0
 
@@ -24,12 +25,12 @@ def main():
 
     obs = defaultdict(list) if X < 100 else None
 
-    for y in range(Y):
-        for x in range(X):
+    for y in range(X):
+        for x in range(Y):
             if g[y][x] == 'X':
                 i = 0
-                for sy in range(Y):
-                    for sx in range(X):
+                for sy in range(X):
+                    for sx in range(Y):
                         obs[dist[y - sy + 100][x - sx + 100]].append(i)
                         i+=1
 
@@ -49,10 +50,10 @@ def main():
                 j += 1
                 while j < len(v) and comp[v[j]] == comp[v[i]]:
                     j += 1
-
+                
                 sz = compsz[comp[v[i]]]
-
-                if j - i != sz:
+                
+                if j - i != sz: 
                     if j - i == 1:
                         compt[len(compsz)] = t
                     sz -= j - i
@@ -62,15 +63,15 @@ def main():
                     for k in range(i, j):
                         comp[v[k]] = len(compsz)
                     compsz.append(j - i)
-
+                    
                 i = j
         t += 1
 
-
+    
     mx = max(compt)
     tot = sum(compt)
 
-    print("{:.9f}".format(tot / X / Y))
+    print(f"{tot / X / Y:.9f}")
     print(mx)
 
     first = True
@@ -79,7 +80,7 @@ def main():
             if not first:
                 print(' ', end='')
             first = False
-            print("({},{})".format(i % X + 1,i // X + 1), end='')
+            print(f"({i % Y + 1},{i // Y + 1})", end='')
 
     print()
 

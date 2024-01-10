@@ -11,7 +11,7 @@ def save_results_as_json(folder, codigo, tests_passed, total_tests, modelo, prom
 
     # Crear una entrada con marca de tiempo
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    entry_key = f"{codigo} - {timestamp} - {modelo} - {propmt_type}"
+    entry_key = f"{codigo} - {timestamp} - {modelo} - {prompt_type}"
     results_data = {
         entry_key: f"{tests_passed} codigos pasados de {total_tests} total. Estado: {result_status}"
     }

@@ -2,9 +2,9 @@ import sys
 sys.setrecursionlimit(100000)
 
 M, N, Q = map(int, input().split())
-nd = [[] for _ in range(N+1)] # fixed the range of nd
+nd = [[] for _ in range(N+1)]
 mx = 0
-for _ in range(1, N+1):
+for _ in range(N):
   ch, x, y, z = input().split()
   x, y, z = int(x), int(y), int(z)
   mx = max(mx, x, y, z)
@@ -34,7 +34,7 @@ def rec(x, sz):
       rec(v[3], osz[v[0]]//2)
 
 rec(1, M)
-for i in range(2, 1000):
+for i in range(2, mx+1):
   if not oout[i]:
       rec(i, 0)
 

@@ -1,6 +1,4 @@
 import sys
-
-
 sys.setrecursionlimit(5000)
 
 def doit(x, y):
@@ -15,14 +13,13 @@ def doit(x, y):
             g[y2][x2] = ch
             doit(x2, y2)
 
-
 while True:
     try:
         X, Y, N = map(int, input().split())
     except EOFError:
         break
 
-    g = [['' for _ in range(X + 2)] for _ in range(Y + 2)]
+    g = [['' for _ in range(X + 1)] for _ in range(Y + 1)]
     wm, wn = [0] * N, [0] * N
 
     for i in range(N):

@@ -54,6 +54,6 @@ for _ in range(Q):
               x = v[osz[v[1]] > osz[v[0]]]
               k -= sz
       else:
-          k = 2 * k - (v[2] == x)
+          k = 2 * k - (v[0] == x)
           x = v[0]
   print(k)

@@ -1,8 +1,9 @@
+
 import sys
 sys.setrecursionlimit(100000)
 
 M, N, Q = map(int, input().split())
-nd = [[] for _ in range(N+1)]
+nd = [[] for _ in range(1)]
 mx = 0
 for _ in range(1, N+1):
   ch, x, y, z = input().split()
@@ -10,9 +11,9 @@ for _ in range(1, N+1):
   mx = max(mx, x, y, z)
   x += 1
   if ch == 'S':
-      nd[_] = [x, 0, y, z]
+      nd.append([x, 0, y, z])
   else:
-      nd[_] = [x, y, z, 0]
+      nd.append([x, y, z, 0])
 
 oin = [0] * (mx+1)
 oout = [0] * (mx+1)

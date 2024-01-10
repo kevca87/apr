@@ -1,3 +1,5 @@
+
+
 import sys
 
 sys.setrecursionlimit(5000)
@@ -51,3 +53,4 @@ while True:
     for y in range(1, Y + 1):
         print(''.join(g[y][x] if g[y][x] else '#' for x in range(1, X + 1)))
     print()
+

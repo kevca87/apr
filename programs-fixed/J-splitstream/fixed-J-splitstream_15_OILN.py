@@ -1,4 +1,3 @@
-
 import sys
 sys.setrecursionlimit(100000)
 
@@ -49,10 +48,10 @@ for _ in range(Q):
       if v[1]:
           sz = min(osz[v[0]], osz[v[1]])
           if k <= 2 * sz or k == 2 * sz + 1:
-              x = v[not k % 2]
+              x = v[int(not k % 2)]
               k = (k+1) // 2
           else:
-              x = v[osz[v[1]] > osz[v[0]]]
+              x = v[int(osz[v[1]] > osz[v[0]])]
               k -= sz
       else:
           k = 2 * k - (v[2] == x)

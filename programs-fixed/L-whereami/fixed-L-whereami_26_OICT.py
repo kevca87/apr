@@ -30,7 +30,7 @@ def main():
                 for sy in range(Y):
                     for sx in range(X):
                         obs[dist[y - sy + 100][x - sx + 100]].append(i)
-                        i += 1
+                        i+=1
 
     comp = [0] * (X * Y)
     compt = [0] * (X * Y)
@@ -38,7 +38,7 @@ def main():
 
     t = 0
     while len(compsz) < X * Y:
-        if len(obs[t]) != 0:
+        if len(obs[t]) !=0:
             v = obs[t]
             v.sort(key=lambda x: comp[x])
             v.reverse()
@@ -50,7 +50,7 @@ def main():
 
                 sz = compsz[comp[v[i]]]
 
-                if j - i != sz:
+                if j - i != sz: 
                     if j - i == 1:
                         compt[len(compsz)] = t
                     sz -= j - i
@@ -79,6 +79,7 @@ def main():
             print(f"({i % X + 1},{i // X + 1})", end='')
 
     print()
+
 
 if __name__ == "__main__":
     main()

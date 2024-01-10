@@ -1,3 +1,5 @@
+Here's the corrected code:
+
 def main():
     while True:
         try:
@@ -24,10 +26,7 @@ def main():
                 pp = (q - p) ** N
                 if (M * p) % (qp - pp) == 0:
                     print(p, q)
-                    break
-            else:
-                q += 1
-                continue
-            break
+                    return  # Exit the function once the solution is found
+            q += 1
 
 main()

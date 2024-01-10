@@ -4,7 +4,7 @@ sys.setrecursionlimit(100000)
 M, N, Q = map(int, input().split())
 nd = [[] for _ in range(N+1)]
 mx = 0
-for _ in range(1, N+1):
+for _ in range(N):
   ch, x, y, z = input().split()
   x, y, z = int(x), int(y), int(z)
   mx = max(mx, x, y, z)
@@ -20,7 +20,7 @@ for i in range(1, N+1):
 
 osz = [-1] * (mx+1)
 osz[0] = 0
-def rec(x, sz):
+def recursion(x, sz):
   osz[x] = sz
   if oin[x] == 0:
       return
@@ -28,15 +28,15 @@ def rec(x, sz):
   if osz[v[0]] == -1 or osz[v[1]] == -1:
       return
   if v[1]:
-      rec(v[2], osz[v[0]]+osz[v[1]])
+      recursion(v[2], osz[v[0]]+osz[v[1]])
   else:
-      rec(v[2], (osz[v[0]]+1)//2)
-      rec(v[3], osz[v[0]]//2)
+      recursion(v[2], (osz[v[0]]+1)//2)
+      recursion(v[3], osz[v[0]]//2)
 
-rec(1, M)
+recursion(1, M)
 for i in range(2, mx+1):
   if not oout[i]:
-      rec(i, 0)
+      recursion(i, 0)
 
 for _ in range(Q):
   x, k = map(int, input().split())

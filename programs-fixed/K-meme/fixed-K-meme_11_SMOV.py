@@ -1,3 +1,4 @@
+
 import random
 
 class Point:
@@ -84,7 +85,6 @@ def traceHull(a, b):
     if a < c:
         traceHull(c, b)
         traceHull(a, c)
-
 
 init()
 N = int(input())

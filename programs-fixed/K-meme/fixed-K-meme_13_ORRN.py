@@ -1,3 +1,4 @@
+
 import random
 
 class Point:
@@ -63,7 +64,7 @@ def doit(x):
     return (-mxtot + mndiff, -mntot + mxdiff)
 
 def tryAngle(dir):
-    global cmpx, cmpy, ret
+    global cmpx, cmpy, ret  # Add 'ret' to the list of global variables
     cmpx = dir.x
     cmpy = dir.y
     result = doit(1)

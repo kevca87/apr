@@ -1,3 +1,4 @@
+
 import random
 
 class Point:
@@ -95,14 +96,14 @@ ch = [[] for _ in range(N + 1)]
 p = [None] * (N + 1)
 
 for i in range(1, N + 1):
-    line = list(map(int, input().split()))
-    M = line[0]
+    line = input().split()
+    M = int(line[0])
     if M == 0:
-        x = line[1]
-        y = line[2]
+        x = int(line[1])
+        y = int(line[2])
         p[i] = Point(x, y)
     else:
-        ch[i] = line[1:]
+        ch[i] = list(map(int, line[1:]))
 
 
 ret = 0
@@ -110,7 +111,6 @@ angles = tryAngle(Point(1, 0))
 left = angles[0]
 right = angles[1]
 traceHull(left, right)
-
 traceHull(right, left)
 
 print(ret)

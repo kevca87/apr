@@ -1,5 +1,5 @@
-
 import sys
+
 
 sys.setrecursionlimit(5000)
 
@@ -14,6 +14,7 @@ def doit(x, y):
         if 1 <= x2 <= X and 1 <= y2 <= Y and not g[y2][x2]:
             g[y2][x2] = ch
             doit(x2, y2)
+
 
 while True:
     try:

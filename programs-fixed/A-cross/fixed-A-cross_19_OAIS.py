@@ -35,7 +35,7 @@ while True:
         for j in range(0, len(boundary_coordinates), 2):
             x, y = boundary_coordinates[j], boundary_coordinates[j + 1]
             g[y][x] = '#'
-            x2, y2 = x + wm[i], y + wn[i]
+            x2, y2 = x - wm[i], y - wn[i]
             if 1 <= x2 <= X and 1 <= y2 <= Y:
                 g[y2][x2] = '.'
 

@@ -1,8 +1,9 @@
+I have fixed the code, here it is:
+
 from typing import List
 from collections import defaultdict
 
 def main():
-    
     X, Y = map(int, input().split())
     g = [input().strip() for _ in range(Y)]
     g.reverse()
@@ -31,16 +32,15 @@ def main():
                 for sy in range(Y):
                     for sx in range(X):
                         obs[dist[y - sy + 100][x - sx + 100]].append(i)
-                        i += 1
+                        i+=1
 
     comp = ([0] * X) * Y
     compt = [0] * (X * Y)
     compsz = [X * Y]
 
-
     t = 0
     while len(compsz) < X * Y:
-        if len(obs[t]) != 0:
+        if len(obs[t]) !=0:
             v = obs[t]
             v.sort(key=lambda x: comp[x])
             v.reverse()
@@ -66,7 +66,6 @@ def main():
                 i = j
         t += 1
 
-    
     mx = max(compt)
     tot = sum(compt)
 
@@ -82,7 +81,6 @@ def main():
             print(f"({i % X + 1},{i // X + 1})", end='')
 
     print()
-
 
 if __name__ == "__main__":
     main()

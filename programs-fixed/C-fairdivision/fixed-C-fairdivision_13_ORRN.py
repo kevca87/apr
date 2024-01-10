@@ -11,7 +11,7 @@ def main():
         pw = [0, 0]  # To adjust indices to match C++ code
         q = 2
         while True:
-            pw.append(q ** N)
+            pw.extend([q ** N])
             for p in range(1, q):
                 d = pw[q] - pw[q - p]
                 if d > 1.1 * M * q:

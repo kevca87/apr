@@ -2,7 +2,6 @@ from typing import List
 from collections import defaultdict
 
 def main():
-    
     X, Y = map(int, input().split())
     g = [input().strip() for _ in range(Y)]
     g.reverse()
@@ -37,7 +36,6 @@ def main():
     compt = [0] * (X * Y)
     compsz = [X * Y]
 
-
     t = 0
     while len(compsz) < X * Y:
         if len(obs[t]) !=0:
@@ -70,7 +68,7 @@ def main():
     mx = max(compt)
     tot = sum(compt)
 
-    print("{:.9f}".format(tot / X / Y))
+    print(f"{tot / X / Y:.9f}")
     print(mx)
 
     first = True
@@ -79,7 +77,7 @@ def main():
             if not first:
                 print(' ', end='')
             first = False
-            print("({},{})".format(i % X + 1,i // X + 1), end='')
+            print(f"({i % X + 1},{i // X + 1})", end='')
 
     print()
 

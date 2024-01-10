@@ -47,6 +47,7 @@ def init():
 
 
 def doit(x):
+
     if len(ch[x]) == 0:
         return (p[x], p[x])
     result = doit(ch[x][0])
@@ -66,7 +67,7 @@ def doit(x):
 
 
 def tryAngle(dir):
-    global cmpx, cmpy, ret  # Add 'ret' to the list of global variables
+    global cmpx, cmpy, ret
     cmpx = dir.x
     cmpy = dir.y
     result = doit(1)

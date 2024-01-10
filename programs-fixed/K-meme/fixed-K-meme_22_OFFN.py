@@ -1,3 +1,4 @@
+
 import random
 
 class Point:
@@ -34,7 +35,7 @@ class Point:
         return self.x * self.x + self.y * self.y
     
     def print(self):
-        print("(", self.x, ",", self.y, ")")
+        print("(",self.x,",",self.y,")")
 
 def init():
     random.seed()
@@ -86,26 +87,32 @@ def traceHull(a, b):
         traceHull(c, b)
 
 
-N = int(input())
-ch = [[] for _ in range(N + 1)]
-p = [None] * (N + 1)
+def main():
+    N = int(input())
 
-for i in range(1, N + 1):
-    line = input().split()
-    M = int(line[0])
-    if M == 0:
-        x = int(line[1])
-        y = int(line[2])
-        p[i] = Point(x, y)
-    else:
-        ch[i] = list(map(int, line[1:]))
+    ch = [[] for _ in range(N + 1)]
+    p = [None] * (N + 1)
+
+    for i in range(1, N + 1):
+        line = input().split()
+        M = int(line[0])
+        if M == 0:
+            x = int(line[1])
+            y = int(line[2])
+            p[i] = Point(x, y)
+        else:
+            ch[i] = list(map(int, line[1:]))
 
 
-ret = 0
-angles = tryAngle(Point(1, 0))
-left = angles[0]
-right = angles[1]
-traceHull(left, right)
-traceHull(right, left)
+    ret = 0
+    angles = tryAngle(Point(1, 0))
+    left = angles[0]
+    right = angles[1]
+    traceHull(left, right)
 
-print(ret)
+    print(ret)
+
+# Run the main function
+if __name__ == "__main__":
+    random.seed()
+    main()

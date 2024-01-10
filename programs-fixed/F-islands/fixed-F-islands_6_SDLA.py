@@ -1,4 +1,3 @@
-
 import math
 
 PI = 2*math.acos(0)
@@ -23,11 +22,14 @@ class Point:
     def len(self):
         return math.hypot(self.x, self.y)
 
+
 def DotProd(a, b):
     return a.x*b.x + a.y*b.y
 
+
 def CrossProd(a, b):
     return a.x*b.y - a.y*b.x
+
 
 def LineSegIntersection(a1, a2, b1, b2):
     cp1 = CrossProd(b2 - b1, a1 - b1)
@@ -42,6 +44,7 @@ def LineSegIntersection(a1, a2, b1, b2):
     if cp1 < 0 and cp2 < 0:
         return False
     return True
+
 
 while True:
     try:

@@ -1,3 +1,4 @@
+
 import random
 
 class Point:
@@ -19,11 +20,9 @@ class Point:
         self.y += p.y
 
     def __lt__(self, p):
-        global cmpx, cmpy
         return self.x * cmpx + self.y * cmpy < p.x * cmpx + p.y * cmpy
 
     def __gt__(self, p):
-        global cmpx, cmpy
         return self.x * cmpx + self.y * cmpy > p.x * cmpx + p.y * cmpy
 
     def __eq__(self, p):
@@ -43,10 +42,10 @@ def init():
     global cmpx, cmpy, ch, p, ret
     cmpx = 1
     cmpy = 0
-    ret = 0 
+    ret = 0
 
 def doit(x):
-    global cmpx, cmpy
+
     if len(ch[x]) == 0:
         return (p[x], p[x])
     result = doit(ch[x][0])
@@ -58,14 +57,14 @@ def doit(x):
         result = doit(ch[x][i])
         mn = result[0]
         mx = result[1]
-        mntot = mntot + mn
-        mxtot = mxtot + mx
+        mntot = mntot.add2(mn)
+        mxtot = mxtot.add2(mx)
         mndiff = min(mndiff, mx + mn)
         mxdiff = max(mxdiff, mx + mn)
-    return (-mxtot + mndiff, -mntot + mxdiff)
+    return (-mxtot.add2(mndiff), -mntot.add2(mxdiff))
 
 def tryAngle(dir):
-    global cmpx, cmpy, ret
+    global cmpx, cmpy, ret  # Add 'ret' to the list of global variables
     cmpx = dir.x
     cmpy = dir.y
     result = doit(1)
@@ -87,6 +86,7 @@ def traceHull(a, b):
         traceHull(a, c)
         traceHull(c, b)
 
+
 init()
 N = int(input())
 
@@ -99,9 +99,10 @@ for i in range(1, N + 1):
     if M == 0:
         x = int(line[1])
         y = int(line[2])
-        p[i+1] = Point(x, y)
+        p[i] = Point(x, y)
     else:
         ch[i] = list(map(int, line[1:]))
+
 
 ret = 0
 angles = tryAngle(Point(1, 0))

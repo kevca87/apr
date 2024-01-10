@@ -1,4 +1,3 @@
-
 import math
 
 PI = 2*math.acos(0)

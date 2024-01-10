@@ -31,6 +31,6 @@ else:
         print(v[2]+1)
     for v in bv:
         print(v[2]+1)
-    
+
 except Exception:
     print("impossible")

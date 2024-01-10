@@ -11,7 +11,7 @@ init(autoreset=True)
 # Establecer el nuevo límite de recursión
 
 # cambiar al programa que se desea ejecutar
-programa = "C-fairdivision"
+programa = "H-prehistoricprograms"
 
 # cambiar al directorio donde se encuentran los archivos de prueba
 
@@ -30,11 +30,11 @@ def run_test(input_file, expected_output_file):
             expected_output = outfile.read()
 
         result = subprocess.run(
-            ['python', f"programs-fixed/{programa}/fixed-{programa}_2_SIIF.py"],
+            ['python', f"programs-fixed/{programa}/fixed-{programa}_34_HIMS.py"],
             input=input_text,
             text=True,
             capture_output=True,
-            timeout=5
+            timeout=1
         )
 
         if result.returncode != 0:
@@ -44,7 +44,7 @@ def run_test(input_file, expected_output_file):
         return result.stdout.strip() == expected_output.strip(), time.time() - start_time
 
     except subprocess.TimeoutExpired:
-        print("El proceso excedió el tiempo límite de 5 segundos.")
+        print("El proceso excedió el tiempo límite de 1 segundos.")
         return False, time.time() - start_time
     except Exception as e:
         print(f"Error al ejecutar la prueba: {e}")

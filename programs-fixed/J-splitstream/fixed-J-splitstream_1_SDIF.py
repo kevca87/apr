@@ -35,6 +35,7 @@ def rec(x, sz):
 
 rec(1, M)
 for i in range(2, mx+1):
+
     rec(i, 0)
 
 for _ in range(Q):

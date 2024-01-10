@@ -46,8 +46,9 @@ while True:
 
         for y in range(1, Y + 1):
             for x in range(1, X + 1):
-                print(f"--{g[y][x]}" if (g[y][x] != ' ') else '.', end='')
+                print(f"{g[y][x]}" if (g[y][x] != ' ') else '.', end='')
             print()
+
         print()
 
         for y in range(1, Y + 1):

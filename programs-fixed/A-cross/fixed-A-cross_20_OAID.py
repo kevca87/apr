@@ -1,4 +1,5 @@
 import sys
+
 sys.setrecursionlimit(5000)
 
 def doit(x, y):
@@ -12,6 +13,7 @@ def doit(x, y):
         if 1 <= x2 <= X and 1 <= y2 <= Y and not g[y2][x2]:
             g[y2][x2] = ch
             doit(x2, y2)
+
 
 while True:
     try:
@@ -31,7 +33,6 @@ while True:
         assert len(boundary_coordinates) == B * 2
 
         for j in range(0, len(boundary_coordinates), 2):
-            j += 1
             x, y = boundary_coordinates[j], boundary_coordinates[j + 1]
             g[y][x] = '#'
             x2, y2 = x - wm[i], y - wn[i]
