@@ -1,4 +1,3 @@
-context
 Spiderweb with n strands and m bridges, favorite strand s. Program: Add minimum bridges so spider walking on autopilot from any start strand ends at s. Constraints: n up to 200,000, m up to 500,000, output minimum bridges for each of n start strands.
 input 
 7 5 6

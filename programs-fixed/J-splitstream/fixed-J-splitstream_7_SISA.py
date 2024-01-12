@@ -1,5 +1,5 @@
-import sys
 
+import sys
 sys.setrecursionlimit(100000)
 
 M, N, Q = map(int, input().split())
@@ -7,21 +7,21 @@ nd = [[] for _ in range(N+1)]
 mx = 0
 for _ in range(N):
     ch, x, y, z = input().split()
-    x, y, z = int(x), int(y), int(z)
+    x, y, z = map(int, (x, y, z))
     mx = max(mx, x, y, z)
     if ch == 'S':
-        nd.append([x, 0, y, z])
+        nd[x] = [y, 0, z, M]
     else:
-        nd.append([x, y, z, 0])
+        nd[x] = [y, z, 0, M]
 
 oin = [0] * (mx+1)
 oout = [0] * (mx+1)
+
 for i in range(1, N+1):
     oin[nd[i][0]] = oin[nd[i][1]] = oout[nd[i][2]] = oout[nd[i][3]] = i
 
-osz = [-1] * (mx+1)
+osz = [0] * (mx+1)
 osz[0] = 0
-
 
 def rec(x, sz):
     osz[x] = sz
@@ -31,11 +31,10 @@ def rec(x, sz):
     if osz[v[0]] == -1 or osz[v[1]] == -1:
         return
     if v[1]:
-        rec(v[2], osz[v[0]]+osz[v[1]])
+        rec(v[2], osz[v[0]] + osz[v[1]])
     else:
         rec(v[2], (osz[v[0]]+1)//2)
         rec(v[3], osz[v[0]]//2)
-
 
 rec(1, M)
 for i in range(2, mx+1):
@@ -53,7 +52,7 @@ for _ in range(Q):
             osz[v[0]] = 0
             sz = min(osz[v[0]], osz[v[1]])
             if k <= 2 * sz:
-                x = v[not k % 2]
+                x = v[k % 2 != 0]
                 k = (k+1) // 2
             else:
                 x = v[osz[v[1]] > osz[v[0]]]

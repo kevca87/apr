@@ -1,5 +1,6 @@
-
+Python
 import random
+
 
 class Point:
     def __init__(self, x, y):
@@ -15,99 +16,65 @@ class Point:
     def __sub__(self, p):
         return Point(self.x - p.x, self.y - p.y)
 
-    def add2(self, p):
-        self.x += p.x
-        self.y += p.y
-        
     def __lt__(self, p):
         return self.x * cmpx + self.y * cmpy < p.x * cmpx + p.y * cmpy
 
     def __gt__(self, p):
         return self.x * cmpx + self.y * cmpy > p.x * cmpx + p.y * cmpy
 
-    def __eq__(self, p):
-        return self.x == p.x and self.y == p.y
-
     def ortho(self):
         return Point(-self.y, self.x)
 
     def lensqr(self):
         return self.x * self.x + self.y * self.y
-    
-    def print(self):
-        print("(",self.x,",",self.y,")")
+
 
 def init():
-    random.seed()
     global cmpx, cmpy, ch, p, ret
     cmpx = 1
     cmpy = 0
-    ret = 0 
+    ret = 0
+
 
 def doit(x):
-    if len(ch[x]) == 0:
-        return (p[x], p[x])
-    result = doit(ch[x][0])
-    mntot = result[0]
-    mxtot = result[1]
-    mndiff = mxtot + mntot
-    mxdiff = mndiff
-    for i in range(1, len(ch[x])):
-        result = doit(ch[x][i])
-        mn = result[0]
-        mx = result[1]
-        mntot = mntot + mn
-        mxtot = mxtot + mx
-        mndiff = min(mndiff, mx + mn)
-        mxdiff = max(mxdiff, mx + mn)
-    return (-mxtot + mndiff, -mntot + mxdiff)
+    results = []
+    for ch in ch[x]:
+        results.append(doit(ch))
+    results.append((-p[x], p[x]))
+    results.sort()
+    return results[0], results[-1]
+
 
 def tryAngle(dir):
     global cmpx, cmpy, ret
     cmpx = dir.x
     cmpy = dir.y
     result = doit(1)
-    
-    mn = result[0]
-    mx = result[1]
-    
-    ret = max(ret, mn.lensqr())
-    ret = max(ret, mx.lensqr())
-    return (mn, mx)
+    ret = max(ret, result[0].lensqr(), result[1].lensqr())
+    return result
+
 
 def traceHull(a, b):
-    if a == b:
-        return
-    result = tryAngle((b-a).ortho())
-    c = result[1]
- 
-    if a < c:
+    if a != b:
+        c = tryAngle((b - a).ortho())[1]
         traceHull(a, c)
         traceHull(c, b)
 
 
 init()
-N = int(input())
+n = int(input())
+ch = [[] for _ in range(n + 1)]
+p = [None] * (n + 1)
 
-ch = [[] for _ in range(N + 1)]
-p = [None] * (N + 1)
-
-for i in range(1, N + 1):
-    line = input().split()
-    M = int(line[0])
-    if M == 0:
-        x = int(line[1])
-        y = int(line[2])
-        p[i] = Point(x, y)
+for i in range(1, n + 1):
+    line = list(map(int, input().split()))
+    if line[0] == 0:
+        p[i] = Point(line[1], line[2])
     else:
-        ch[i] = list(map(int, line[1:]))
+        ch[i] = line[1:]
 
-
-ret = 0
-angles = tryAngle(Point(1, 0))
-left = angles[0]
-right = angles[1]
-traceHull(left, right)
-traceHull(right, left)
+tryAngle(Point(1, 0))
+traceHull(p[1], p[n])
+traceHull(p[n], p[1])
 
 print(ret)

@@ -1,3 +1,4 @@
+
 def main():
     while True:
         try:
@@ -8,7 +9,7 @@ def main():
         if N > 200:
             N = 200
 
-        pw = [0, 0]  # To adjust indices to match C++ code
+        pw = [1, 1]  # To adjust indices to match C++ code
         q = 2
         while True:
             pw.append(q ** N)

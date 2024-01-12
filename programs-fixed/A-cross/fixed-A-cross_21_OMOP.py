@@ -1,3 +1,4 @@
+
 import sys
 
 sys.setrecursionlimit(5000)
@@ -8,8 +9,8 @@ def doit(x, y):
     if not ch:
         return
     for i in range(N):
-        x2 = x + (wm[i] if ch == '.' else -wm[i])
-        y2 = y + (wn[i] if ch == '.' else -wn[i])
+        x2 = x + (wm[i] if ch == '#' else -wm[i])
+        y2 = y + (wn[i] if ch == '#' else -wn[i])
         if 1 <= x2 <= X and 1 <= y2 <= Y and not g[y2][x2]:
             g[y2][x2] = ch
             doit(x2, y2)
@@ -21,7 +22,7 @@ while True:
     except EOFError:
         break
 
-    g = [['' for _ in range(X + 1)] for _ in range(Y + 1)]
+    g = [['' for _ in range(X + 2)] for _ in range(Y + 2)]
     wm, wn = [0] * N, [0] * N
 
     for i in range(N):
@@ -39,8 +40,8 @@ while True:
             if 1 <= x2 <= X and 1 <= y2 <= Y:
                 g[y2][x2] = '.'
 
-    for y in range(-Y, 2 * Y + 1):
-        for x in range(-X, 2 * X + 1):
+    for y in range(1, Y + 1):
+        for x in range(1, X + 1):
             doit(x, y)
 
     for y in range(1, Y + 1):
@@ -48,5 +49,5 @@ while True:
     print()
 
     for y in range(1, Y + 1):
-        print(''.join(g[y][x] if g[y][x] else '#' for x in range(1, X + 1)))
+        print(''.join(g[y][x] if g[y][x] or g[y][x]=='' else '#' for x in range(1, X + 1)))
     print()

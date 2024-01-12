@@ -1,15 +1,16 @@
+
 import math
 
-PI = 2 * math.acos(0)
+PI = 2*math.acos(0)
 
 class Point:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-    
+
     def __sub__(self, p):
         return Point(self.x - p.x, self.y - p.y)
-    
+
     def __add__(self, p):
         return Point(self.x + p.x, self.y + p.y)
     
@@ -24,11 +25,11 @@ class Point:
 
 
 def DotProd(a, b):
-    return a.x * b.x + a.y * b.y
+    return a.x*b.x + a.y*b.y
 
 
 def CrossProd(a, b):
-    return a.x * b.y - a.y * b.x
+    return a.x*b.y - a.y*b.x
 
 
 def LineSegIntersection(a1, a2, b1, b2):
@@ -68,10 +69,10 @@ while True:
             FZ1.append(z1)
             F2.append(Point(x2, y2))
             FZ2.append(z2)
-
         lo = 0.0
-        hi = PI / 2
-        for rep in range(64):
+        hi = PI/2
+
+        for _ in range(64):
             th = (hi + lo) / 2
             seen = [False] * N
             for f in range(M):
@@ -82,6 +83,7 @@ while True:
                 poly.append(F2[f] - ortho * (FZ2[f] * math.tan(th)))
                 poly.append(F2[f] + ortho * (FZ2[f] * math.tan(th)))
                 poly.append(F1[f] + ortho * (FZ1[f] * math.tan(th)))
+
                 mxx = 1e7
                 for point in poly:
                     mxx = max(mxx, point.x)
@@ -93,6 +95,7 @@ while True:
                             for j in range(len(poly)):
                                 a = poly[j]
                                 b = poly[(j + 1) % len(poly)]
+                                #removed print statement here
                                 cnt += LineSegIntersection(a, b, p, Point(mxx + 1337, p.y + 7331))
                             if cnt % 2 == 0:
                                 fail = True
@@ -104,7 +107,7 @@ while True:
             else:
                 lo = th
 
-        if hi == PI / 2:
+        if hi == PI/2:
             print("impossible")
         else:
             print("{:.9f}".format((hi + lo) / 2 * 180 / PI))

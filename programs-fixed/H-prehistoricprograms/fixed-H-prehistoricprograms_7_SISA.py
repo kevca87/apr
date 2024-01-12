@@ -1,3 +1,4 @@
+
 try:
     N = int(input())
     fv, bv = [], []
@@ -10,9 +11,9 @@ try:
             b += (S[j] == '(') - (S[j] == ')')
             mn = min(mn, b)
         if b >= 0:
-            fv.append([-mn, b, i])
+            fv.append([-mn, b, i+1])
         else:
-            bv.append([b-mn, -b, i])
+            bv.append([b-mn, -b, i+1])
         tot += b
     if tot:
         raise Exception
@@ -29,10 +30,9 @@ try:
     else:
         bv.reverse()
         for v in fv:
-            v[1] += 1
-            print(v[2]+1)
+            print(v[2])
         for v in bv:
-            print(v[2]+1)
+            print(v[2])
     
 except Exception:
     print("impossible")

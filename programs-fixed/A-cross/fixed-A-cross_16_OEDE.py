@@ -1,5 +1,5 @@
-import sys
 
+import sys
 
 sys.setrecursionlimit(5000)
 
@@ -26,10 +26,10 @@ while True:
     wm, wn = [0] * N, [0] * N
 
     for i in range(N):
-        entrada = list(map(int, input().split()))
-        wm[i], wn[i] = entrada[0], entrada[1]
-        B = entrada[2]
-        boundary_coordinates = entrada[3:]
+        entrance = list(map(int, input().split()))
+        wm[i], wn[i] = entrance[0], entrance[1]
+        B = entrance[2]
+        boundary_coordinates = entrance[3:]
 
         assert len(boundary_coordinates) == B * 2
 
@@ -40,8 +40,8 @@ while True:
             if 1 <= x2 <= X and 1 <= y2 <= Y:
                 g[y2][x2] = '.'
 
-    for y in range(-Y, 2 * Y + 1):
-        for x in range(-X, 2 * X + 1):
+    for y in range(1, Y + 1):
+        for x in range(1, X + 1):
             doit(x, y)
 
     for y in range(1, Y + 1):

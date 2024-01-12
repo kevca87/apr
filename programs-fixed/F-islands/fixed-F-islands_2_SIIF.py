@@ -1,3 +1,4 @@
+
 import math
 
 PI = 2 * math.acos(0)
@@ -6,13 +7,13 @@ class Point:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-    
+
     def __sub__(self, p):
         return Point(self.x - p.x, self.y - p.y)
-    
+
     def __add__(self, p):
         return Point(self.x + p.x, self.y + p.y)
-    
+
     def __mul__(self, c):
         return Point(self.x * c, self.y * c)
 
@@ -24,11 +25,11 @@ class Point:
 
 
 def DotProd(a, b):
-    return a.x * b.x + a.y * b.y
+    return a.x*b.x + a.y*b.y
 
 
 def CrossProd(a, b):
-    return a.x * b.y - a.y * b.x
+    return a.x*b.y - a.y*b.x
 
 
 def LineSegIntersection(a1, a2, b1, b2):
@@ -50,8 +51,8 @@ def LineSegIntersection(a1, a2, b1, b2):
 while True:
     try:
         N, M = map(int, input().split())
-        if N == 0:
-            I = []
+        I = []
+        if N != 0:
             for _ in range(N):
                 NI = int(input())
                 island = []
@@ -105,7 +106,7 @@ while True:
             else:
                 lo = th
 
-        if hi == PI / 2:
+        if hi == PI/2:
             print("impossible")
         else:
             print("{:.9f}".format((hi + lo) / 2 * 180 / PI))

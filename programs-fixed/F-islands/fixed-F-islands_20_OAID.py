@@ -1,3 +1,4 @@
+
 import math
 
 PI = 2*math.acos(0)
@@ -34,15 +35,11 @@ def CrossProd(a, b):
 def LineSegIntersection(a1, a2, b1, b2):
     cp1 = CrossProd(b2 - b1, a1 - b1)
     cp2 = CrossProd(b2 - b1, a2 - b1)
-    if cp1 > 0 and cp2 > 0:
-        return False
-    if cp1 < 0 and cp2 < 0:
+    if cp1 * cp2 > 0: #changed such that only the sign matters
         return False
     cp1 = CrossProd(a2 - a1, b1 - a1)
     cp2 = CrossProd(a2 - a1, b2 - a1)
-    if cp1 > 0 and cp2 > 0:
-        return False
-    if cp1 < 0 and cp2 < 0:
+    if cp1 * cp2 > 0: #changed such that only the sign matters
         return False
     return True
 
@@ -70,7 +67,7 @@ while True:
             FZ2.append(z2)
 
         lo = 0.0
-        hi = PI/2
+        hi = PI
         for rep in range(64):
             th = (hi + lo) / 2
             seen = [False] * N
@@ -82,19 +79,19 @@ while True:
                 poly.append(F2[f] - ortho * (FZ2[f] * math.tan(th)))
                 poly.append(F2[f] + ortho * (FZ2[f] * math.tan(th)))
                 poly.append(F1[f] + ortho * (FZ1[f] * math.tan(th)))
-                mxx = 1e7
-                for point in poly:
-                    mxx = max(mxx, point.x)
+                mxx = -1e7
+                for i in range(len(poly)):
+                    mxx = max(mxx, poly[i].x)
                 for i in range(len(I)):
                     if not seen[i]:
                         fail = False
                         for p in I[i]:
                             cnt = 0
+                            p = Point(mxx + 1337, p.y + 7331)
                             for j in range(len(poly)):
                                 a = poly[j]
-                                a += 1
                                 b = poly[(j + 1) % len(poly)]
-                                cnt += LineSegIntersection(a, b, p, Point(mxx + 1337, p.y + 7331))
+                                cnt += LineSegIntersection(a, b, p.x, p.y)
                             if cnt % 2 == 0:
                                 fail = True
                                 break
@@ -105,7 +102,7 @@ while True:
             else:
                 lo = th
 
-        if hi == PI/2:
+        if hi > PI/2: # Made a mistake, the condition should be greater than PI/2
             print("impossible")
         else:
             print("{:.9f}".format((hi + lo) / 2 * 180 / PI))

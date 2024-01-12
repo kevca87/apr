@@ -1,3 +1,4 @@
+
 def main():
     while True:
         try:
@@ -5,28 +6,23 @@ def main():
         except:
             break  # Exit the loop if input is not valid
 
-        if N > 200:
-            N = 200
+        if N > 106:
+            N = 106
 
-        pw = [0, 0]  # To adjust indices to match C++ code
-        q = 2
-        while True:
+        pw = [1, 1]  # To adjust indices to match C++ code
+        for q in range(2, 10**6+7):  # Increase denominator
             pw.append(q ** N)
-            for p in range(1, q):
+            for p in range(1, q+1):  # Increase numerator
                 d = pw[q] - pw[q - p]
-                if d > 1.1 * M * q:
-                    if p == 1:
-                        print("impossible")
-                        break
-                    continue
+                if d > M:
+                    break  # Skip this denominator
 
-                qp = q ** N
-                pp = (q - p) ** N
-                if (M * p) % (qp - pp) == 0:
-                    print(p, q)
-                    break
-            else:
-                continue
-            break
+                if d == 0:
+                    continue 
+                
+                if M % d == 0:  # Check for exact solution
+                    print(str(p) + "/" + str(q))
+                    return
+        print('impossible')  # If no solution found
 
 main()

@@ -1,16 +1,16 @@
+
 from typing import List
 from collections import defaultdict
 
 def main():
-    
     X, Y = map(int, input().split())
     g = [input().strip() for _ in range(Y)]
     g.reverse()
-    
-    dist = [[0] * 201 for _ in range(201)]
-    x, y, dx, dy, step, stepn, cur = 100, 100, 0, 1, 0, 1, 0
 
-    while y > 1:
+    dist = [[0] * (X+1) for _ in range(Y+1)]
+    x, y, dx, dy, step, stepn, cur = X // 2, Y // 2, 0, 1, 0, 1, 0
+
+    while 0 <= x < X and 0 <= y < Y:
         dist[y][x] = cur
         x += dx
         y += dy
@@ -30,16 +30,15 @@ def main():
                 i = 0
                 for sy in range(Y):
                     for sx in range(X):
-                        obs[dist[y - sy + 100][x - sx + 100]].append(i)
+                        obs[dist[y - sy][x - sx]].append(i)
                         i+=1
 
     comp = [0] * (X * Y)
     compt = [0] * (X * Y)
     compsz = [X * Y]
 
-
     t = 0
-    while len(compsz) < X * Y:
+    while t < X * Y:
         if len(obs[t]) !=0:
             v = obs[t]
             v.sort(key=lambda x: comp[x])
@@ -66,7 +65,6 @@ def main():
                 i = j
         t += 1
 
-    
     mx = max(compt)
     tot = sum(compt)
 

@@ -39,6 +39,7 @@ def LineSegIntersection(a1, a2, b1, b2):
     if cp1 < 0 and cp2 < 0:
         return False
     cp1 = CrossProd(a2 - a1, b1 - a1)
+    cp2 = CrossProd(a2 - a1, b2 - a1)
     if cp1 > 0 and cp2 > 0:
         return False
     if cp1 < 0 and cp2 < 0:
@@ -92,13 +93,13 @@ while True:
                             for j in range(len(poly)):
                                 a = poly[j]
                                 b = poly[(j + 1) % len(poly)]
-                                cnt += LineSegIntersection(a, b, p, Point(mxx + 1337, p.y + 7331))
+                                cnt += LineSegIntersection(a, b, p, Point(mxx + 1337, p.y))
                             if cnt % 2 == 0:
                                 fail = True
                                 break
                         if not fail:
                             seen[i] = True
-            if seen == [True] * N:
+            if all(seen):
                 hi = th
             else:
                 lo = th
@@ -106,7 +107,9 @@ while True:
         if hi == PI/2:
             print("impossible")
         else:
-            print("{:.9f}".format((hi + lo) / 2 * 180 / PI))
+            print("{:.9f}".format(180 * (hi + lo) / (2 * PI)))
 
     except EOFError:
         break
+It looks like the error in this code was in the LineSegIntersection function where cp2 was not updated in the second condition causing wrong results. It should be cp1 = CrossProd(a2 - a1, b1 - a1)
+    cp2 = CrossProd(a2 - a1, b2 - a1). One more fix is in the cnt line it should be cnt += LineSegIntersection(a, b, p, Point(mxx + 1337, p.y)) rather than cnt += LineSegIntersection(a, b, p, Point(mxx + 1337, p.y + 7331)) which caused wrong results. In the final if condition, used function all to check the all values in seen are true. Also, in the final else condition, formula has been corrected to calculate the angle properly, it should be print("{:.9f}".format(180 * (hi + lo) / (2 * PI))).

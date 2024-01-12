@@ -1,3 +1,4 @@
+
 N = int(input())
 fv, bv = [], []
 tot = 0
@@ -13,24 +14,17 @@ for i in range(N):
     else:
         bv.append([b-mn, -b, i])
     tot += b
-if tot:
-    raise Exception
 
-for i in range(len(fv)):
-    v = fv if i else bv
-    v.sort()
-    cur = 0
-    for j in range(len(v)):
-        if cur < v[j][0]:
+fv.sort()
+bv.sort()
+
+cur = 0
+try:
+    for v in fv+bv[::-1]:
+        if cur < v[0]:
             raise Exception
-        cur += v[j][1]
-    
-else:
-    bv.reverse()
-    for v in fv:
+        cur += v[1]
+    for v in fv+bv[::-1]:
         print(v[2]+1)
-    for v in bv:
-        print(v[2]+1)
-
 except Exception:
     print("impossible")

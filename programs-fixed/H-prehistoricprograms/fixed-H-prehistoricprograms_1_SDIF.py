@@ -1,3 +1,4 @@
+
 try:
     N = int(input())
     fv, bv = [], []
@@ -17,21 +18,19 @@ try:
     if tot:
         raise Exception
 
-    for i in range(2):
-        v = fv
+    for v in [fv, bv]:
         v.sort()
         cur = 0
         for j in range(len(v)):
             if cur < v[j][0]:
                 raise Exception
             cur += v[j][1]
-        
-    else:
-        bv.reverse()
-        for v in fv:
-            print(v[2]+1)
-        for v in bv:
-            print(v[2]+1)
-    
+
+    bv.sort(reverse=True)
+    for v in fv:
+        print(v[2]+1)
+    for v in bv:
+        print(v[2]+1)
+
 except Exception:
     print("impossible")

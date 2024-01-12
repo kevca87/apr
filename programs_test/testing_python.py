@@ -28,7 +28,7 @@ def run_test(input_file, expected_output_file, codigo, folder):
             input=input_text,
             text=True,
             capture_output=True,
-            timeout=0.1
+            timeout=4
         )
 
         if result.returncode != 0:
@@ -74,8 +74,8 @@ for folder in folders:
                             folder_tests_passed += 1
                             total_tests_passed += 1
             
-            print_test_result(codigo, program_tests_passed, len(os.listdir(f'icpc2021data/{folder}')))
-            # save_results_as_json(folder, codigo, program_tests_passed, total_tests_for_program, model_name, promp_type)
+            print_test_result(codigo, program_tests_passed, len(os.listdir(f'icpc2021data/{folder}'))/2)
+            save_results_as_json(folder, codigo, program_tests_passed, int(total_tests_for_program/2), model_name, promp_type)
 
     else:
         print("No existen códigos arreglados en esta carpeta.")

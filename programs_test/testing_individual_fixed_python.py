@@ -11,7 +11,7 @@ init(autoreset=True)
 # Establecer el nuevo límite de recursión
 
 # cambiar al programa que se desea ejecutar
-programa = "H-prehistoricprograms"
+programa = "L-whereami"
 
 # cambiar al directorio donde se encuentran los archivos de prueba
 
@@ -30,7 +30,7 @@ def run_test(input_file, expected_output_file):
             expected_output = outfile.read()
 
         result = subprocess.run(
-            ['python', f"programs-fixed/{programa}/fixed-{programa}_34_HIMS.py"],
+            ['python', f"programs-fixed/{programa}/fixed-{programa}_02_SIIF.py"],
             input=input_text,
             text=True,
             capture_output=True,

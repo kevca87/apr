@@ -1,4 +1,3 @@
-context
 n strings (n less than 106) with up to 107 total parentheses. Program: Find an order of strings that results in properly nested structure with all parentheses matched or output impossible. Constraints: Output any valid sequence or impossible if none exists.
 input 
 2

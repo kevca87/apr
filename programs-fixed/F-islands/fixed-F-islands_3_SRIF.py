@@ -20,7 +20,7 @@ class Point:
         return Point(self.x / c, self.y / c)
 
     def len(self):
-        return math.hypot(self.x, self.y)
+        return math.sqrt(self.x**2 + self.y**2)
 
 
 def DotProd(a, b):
@@ -34,15 +34,11 @@ def CrossProd(a, b):
 def LineSegIntersection(a1, a2, b1, b2):
     cp1 = CrossProd(b2 - b1, a1 - b1)
     cp2 = CrossProd(b2 - b1, a2 - b1)
-    if cp1 > 0 and cp2 > 0:
-        return False
-    if cp1 < 0 and cp2 < 0:
+    if cp1 * cp2 > 0:
         return False
     cp1 = CrossProd(a2 - a1, b1 - a1)
     cp2 = CrossProd(a2 - a1, b2 - a1)
-    if cp1 > 0 and cp2 > 0:
-        return False
-    if cp1 < 0 and cp2 < 0:
+    if cp1 * cp2 > 0:
         return False
     return True
 
@@ -82,7 +78,7 @@ while True:
                 poly.append(F2[f] - ortho * (FZ2[f] * math.tan(th)))
                 poly.append(F2[f] + ortho * (FZ2[f] * math.tan(th)))
                 poly.append(F1[f] + ortho * (FZ1[f] * math.tan(th)))
-                mxx = 1e7
+                mxx = -106
                 for point in poly:
                     mxx = max(mxx, point.x)
                 for i in range(len(I)):
@@ -93,13 +89,13 @@ while True:
                             for j in range(len(poly)):
                                 a = poly[j]
                                 b = poly[(j + 1) % len(poly)]
-                                cnt += LineSegIntersection(a, b, p, Point(mxx + 1337, p.y + 7331))
+                                cnt += LineSegIntersection(a, b, p, Point(mxx + 1, p.y))
                             if cnt % 2 == 0:
                                 fail = True
                                 break
                         if not fail:
                             seen[i] = True
-            if seen == [True] * N:
+            if all(seen):
                 hi = th
             else:
                 lo = th

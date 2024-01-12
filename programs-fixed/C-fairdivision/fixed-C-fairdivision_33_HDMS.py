@@ -1,3 +1,4 @@
+
 def main():
     while True:
         try:
@@ -5,12 +6,14 @@ def main():
         except:
             break  # Exit the loop if input is not valid
 
-        if N > 200:
-            N = 200
+        if N > 106:
+            N = 106
 
         pw = [0, 0]  # To adjust indices to match C++ code
         q = 2
         while True:
+            if q > N:
+                break
             pw.append(q ** N)
             for p in range(1, q):
                 d = pw[q] - pw[q - p]
@@ -22,7 +25,7 @@ def main():
                 qp = q ** N
                 pp = (q - p) ** N
                 if (M * p) % (qp - pp) == 0:
-                    print(f"{p} {q}")
+                    print(p, q)
                     break
             else:
                 q += 1

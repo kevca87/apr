@@ -1,34 +1,35 @@
+
 import math
 
-PI = 2 * math.acos(0)
+PI = 2*math.acos(0)
 
 class Point:
     def __init__(self, x, y):
         self.x = x
         self.y = y
     
-    def __sub__(self, p):
-        return Point(self.x - p.x, self.y - p.y)
+    def __sub__(self, other):
+        return Point(self.x - other.x, self.y - other.y)
     
-    def __add__(self, p):
-        return Point(self.x + p.x, self.y + p.y)
+    def __add__(self, other):
+        return Point(self.x + other.x, self.y + other.y)
     
     def __mul__(self, c):
         return Point(self.x * c, self.y * c)
 
-    def __truediv__(self, c):
-        return Point(self.x / c, self.y / c)
+    def __floordiv__(self, c):
+        return Point(self.x // c, self.y // c)
 
-    def len(self):
+    def hypot(self):
         return math.hypot(self.x, self.y)
 
 
 def DotProd(a, b):
-    return a.x * b.x + a.y * b.y
+    return a.x*b.x + a.y*b.y
 
 
 def CrossProd(a, b):
-    return a.x * b.y - a.y * b.x
+    return a.x*b.y - a.y*b.x
 
 
 def LineSegIntersection(a1, a2, b1, b2):
@@ -70,14 +71,13 @@ while True:
             FZ2.append(z2)
 
         lo = 0.0
-        hi = PI / 2
+        hi = PI/2
         for rep in range(64):
             th = (hi + lo) / 2
             seen = [False] * N
             for f in range(M):
                 poly = []
-                ortho = Point(F1[f].y - F2[f].y, F2[f].x - F1[f].x)
-                ortho = ortho / ortho.len()
+                ortho = Point(F1[f].y - F2[f].y, F2[f].x - F1[f].x).hypot()
                 poly.append(F1[f] - ortho * (FZ1[f] * math.tan(th)))
                 poly.append(F2[f] - ortho * (FZ2[f] * math.tan(th)))
                 poly.append(F2[f] + ortho * (FZ2[f] * math.tan(th)))
@@ -93,18 +93,18 @@ while True:
                             for j in range(len(poly)):
                                 a = poly[j]
                                 b = poly[(j + 1) % len(poly)]
-                                cnt += LineSegIntersection(a, b, p, Point(mxx + 1337, p.y + 7331))
+                                cnt += int(LineSegIntersection(a, b, p, Point(mxx + 1337, p.y + 7331)))
                             if cnt % 2 == 0:
                                 fail = True
                                 break
                         if not fail:
                             seen[i] = True
-            if seen == [True] * N:
+            if sum(seen) == N:
                 hi = th
             else:
                 lo = th
 
-        if hi == PI / 2:
+        if hi == PI/2:
             print("impossible")
         else:
             print("{:.9f}".format((hi + lo) / 2 * 180 / PI))

@@ -3,12 +3,12 @@ def main():
         try:
             N, M = map(int, input().split())
         except:
-            break
+            break  
 
         if N > 200:
             N = 200
 
-        pw = [0, 0]
+        pw = [0, 0]  
         q = 2
         while True:
             pw.append(q ** N)
@@ -30,4 +30,5 @@ def main():
                 continue
             break
 
-main()
+if __name__ == "__main__":
+   main()

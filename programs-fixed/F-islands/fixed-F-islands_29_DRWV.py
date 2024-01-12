@@ -1,3 +1,4 @@
+
 import math
 
 PI = 2*math.acos(0)
@@ -50,7 +51,7 @@ def LineSegIntersection(a1, a2, b1, b2):
 while True:
     try:
         N, M = map(int, input().split())
-        I = []
+        I = [] # changed from H to I
         for _ in range(N):
             NI = int(input())
             island = []
@@ -82,7 +83,7 @@ while True:
                 poly.append(F2[f] - ortho * (FZ2[f] * math.tan(th)))
                 poly.append(F2[f] + ortho * (FZ2[f] * math.tan(th)))
                 poly.append(F1[f] + ortho * (FZ1[f] * math.tan(th)))
-                mxx = 1e7
+                mxx = -1e7 # changed from 1e7 to -1e7
                 for point in poly:
                     mxx = max(mxx, point.x)
                 for i in range(len(I)):

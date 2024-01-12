@@ -1,3 +1,4 @@
+
 try:
     N = int(input())
     fv, bv = [], []
@@ -14,7 +15,7 @@ try:
         else:
             bv.append([b-mn, -b, i])
         tot += b
-    if not tot:
+    if tot != 0:
         raise Exception
 
     for i in range(2):
@@ -25,7 +26,7 @@ try:
             if cur < v[j][0]:
                 raise Exception
             cur += v[j][1]
-        
+
     else:
         bv.reverse()
         for v in fv:

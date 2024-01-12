@@ -1,3 +1,4 @@
+
 import sys
 sys.setrecursionlimit(100000)
 
@@ -9,9 +10,9 @@ for _ in range(N):
     x, y, z = int(x), int(y), int(z)
     mx = max(mx, x, y, z)
     if ch == 'S':
-        nd.append([x, 0, y, z])
+        nd[x] = [0, y, z]
     else:
-        nd.append([x, y, z, 0])
+        nd[x] = [y, z, 0]
 
 oin = [0] * (mx+1)
 oout = [0] * (mx+1)

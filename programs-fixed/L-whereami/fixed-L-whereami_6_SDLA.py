@@ -1,16 +1,18 @@
+
 from typing import List
 from collections import defaultdict
-      
+
 def main():
     
-    X, Y = map(int, input().split())
-    g = [input().strip() for _ in range(Y)]
+    X = int(input())
+    g = [input().strip() for _ in range(X)]
     g.reverse()
+    Y = 201
     
-    dist = [[0] * 201 for _ in range(201)]
+    dist = [[0] * Y for _ in range(Y)]
     x, y, dx, dy, step, stepn, cur = 100, 100, 0, 1, 0, 1, 0
 
-    while y < 201:
+    while y < Y:
         dist[y][x] = cur
         x += dx
         y += dy
@@ -23,22 +25,21 @@ def main():
 
     obs = defaultdict(list)
 
-    for y in range(Y):
+    for y in range(X):
         for x in range(X):
             if g[y][x] == 'X':
                 i = 0
                 for sy in range(Y):
-                    for sx in range(X):
+                    for sx in range(Y):
                         obs[dist[y - sy + 100][x - sx + 100]].append(i)
                         i+=1
 
-    comp = [0] * (X * Y)
-    compt = [0] * (X * Y)
-    compsz = [X * Y]
-
+    comp = [0] * (X * X)
+    compt = [0] * (X * X)
+    compsz = [X * X]
 
     t = 0
-    while len(compsz) < X * Y:
+    while len(compsz) < X * X:
         if len(obs[t]) !=0:
             v = obs[t]
             v.sort(key=lambda x: comp[x])
@@ -69,11 +70,11 @@ def main():
     mx = max(compt)
     tot = sum(compt)
 
-    print(f"{tot / X / Y:.9f}")
+    print(f"{tot / X / X:.9f}")
     print(mx)
 
     first = True
-    for i in range(X * Y):
+    for i in range(X * X):
         if compt[comp[i]] == mx:
             if not first:
                 print(' ', end='')

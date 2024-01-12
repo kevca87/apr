@@ -1,6 +1,6 @@
 
 import sys
-sys.setrecursionlimit(10000)  # Establece un límite más alto
+sys.setrecursionlimit(10000)
 
 
 def doit(x, y):
@@ -24,16 +24,12 @@ while True:
         wm = [0] * N
         wn = [0] * N
         for i in range(N):
-            line = input().split()
-            wm[i] = int(line[0])
-            wn[i] = int(line[1])
-            B = int(line[2])
-            pos = 3
+            line = list(map(int,input().split()))
+            wm[i] = line[0]
+            wn[i] = line[1]
+            B = line[2]
             for j in range(B):
-                x = int(line[pos])
-                pos = pos + 1
-                y = int(line[pos])
-                pos = pos + 1
+                x, y = line[3+j*2], line[4+j*2]
                 g[y][x] = '#'
                 x2 = x - wm[i]
                 y2 = y - wn[i]
@@ -46,10 +42,8 @@ while True:
 
         for y in range(1, Y + 1):
             for x in range(1, X + 1):
-                print(f"{g[y][x]}" if (g[y][x] != ' ') else '.', end='')
+                print(g[y][x] if (g[y][x] != ' ') else '.', end='')
             print()
-
-        print()
 
         for y in range(1, Y + 1):
             for x in range(1, X + 1):

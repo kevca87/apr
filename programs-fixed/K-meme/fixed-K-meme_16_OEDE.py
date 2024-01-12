@@ -18,7 +18,7 @@ class Point:
     def add2(self, p):
         self.x += p.x
         self.y += p.y
-        
+
     def __lt__(self, p):
         return self.x * cmpx + self.y * cmpy < p.x * cmpx + p.y * cmpy
 
@@ -33,9 +33,6 @@ class Point:
 
     def lensqr(self):
         return self.x * self.x + self.y * self.y
-    
-    def print(self):
-        print("(", self.x, ",", self.y, ")")
 
 def init():
     random.seed()
@@ -67,7 +64,7 @@ def tryAngle(dir):
     cmpx = dir.x
     cmpy = dir.y
     result = doit(1)
-    
+
     mn = result[0]
     mx = result[1]
     
@@ -80,7 +77,7 @@ def traceHull(a, b):
         return
     result = tryAngle((b-a).ortho())
     c = result[1]
- 
+
     if a < c:
         traceHull(a, c)
         traceHull(c, b)

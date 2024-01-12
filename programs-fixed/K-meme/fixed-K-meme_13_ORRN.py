@@ -18,7 +18,7 @@ class Point:
     def add2(self, p):
         self.x += p.x
         self.y += p.y
-        
+
     def __lt__(self, p):
         return self.x * cmpx + self.y * cmpy < p.x * cmpx + p.y * cmpy
 
@@ -34,9 +34,6 @@ class Point:
     def lensqr(self):
         return self.x * self.x + self.y * self.y
     
-    def print(self):
-        print("(",self.x,",",self.y,")")
-
 def init():
     random.seed()
     global cmpx, cmpy, ch, p, ret
@@ -45,7 +42,6 @@ def init():
     ret = 0 
 
 def doit(x):
-    
     if len(ch[x]) == 0:
         return (p[x], p[x])
     result = doit(ch[x][0])
@@ -64,14 +60,12 @@ def doit(x):
     return (-mxtot + mndiff, -mntot + mxdiff)
 
 def tryAngle(dir):
-    global cmpx, cmpy, ret  # Add 'ret' to the list of global variables
+    global cmpx, cmpy, ret
     cmpx = dir.x
     cmpy = dir.y
     result = doit(1)
-    
     mn = result[0]
     mx = result[1]
-    
     ret = max(ret, mn.lensqr())
     ret = max(ret, mx.lensqr())
     return (mn, mx)
@@ -81,18 +75,14 @@ def traceHull(a, b):
         return
     result = tryAngle((b-a).ortho())
     c = result[1]
- 
     if a > c:
         traceHull(a, c)
         traceHull(c, b)
 
-
 init()
 N = int(input())
-
 ch = [[] for _ in range(N + 1)]
 p = [None] * (N + 1)
-
 for i in range(1, N + 1):
     line = input().split()
     M = int(line[0])
@@ -103,12 +93,10 @@ for i in range(1, N + 1):
     else:
         ch[i] = list(map(int, line[1:]))
 
-
 ret = 0
 angles = tryAngle(Point(1, 0))
 left = angles[0]
 right = angles[1]
 traceHull(left, right)
 traceHull(right, left)
-
 print(ret)

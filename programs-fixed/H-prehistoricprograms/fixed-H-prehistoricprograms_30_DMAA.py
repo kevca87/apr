@@ -1,3 +1,4 @@
+
 try:
     N = int(input())
     fv, bv = [], []
@@ -6,15 +7,18 @@ try:
         S = input()
         b = 0
         mn = 0
-        for j in range(len(S) - 1):
-            b += (S[j+1] == '(') - (S[j] == ')')
+        for j in range(len(S)):
+            if S[j] == '(':
+                b += 1
+            else:
+                b -= 1
             mn = min(mn, b)
         if b >= 0:
             fv.append([-mn, b, i])
         else:
             bv.append([b-mn, -b, i])
         tot += b
-    if tot:
+    if tot != 0:
         raise Exception
 
     for i in range(2):

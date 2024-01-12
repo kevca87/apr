@@ -1,3 +1,4 @@
+
 import math
 
 PI = 2*math.acos(0)
@@ -30,19 +31,19 @@ def DotProd(a, b):
 def CrossProd(a, b):
     return a.x*b.y - a.y*b.x
 
-
+EPS = 1e-7
 def LineSegIntersection(a1, a2, b1, b2):
     cp1 = CrossProd(b2 - b1, a1 - b1)
     cp2 = CrossProd(b2 - b1, a2 - b1)
-    if cp1 > 0 and cp2 > 0:
+    if cp1 > EPS and cp2 > EPS:
         return False
-    if cp1 < 0 and cp2 < 0:
+    if cp1 < -EPS and cp2 < -EPS:
         return False
     cp1 = CrossProd(a2 - a1, b1 - a1)
     cp2 = CrossProd(a2 - a1, b2 - a1)
-    if cp1 > 0 and cp2 > 0:
+    if cp1 > EPS and cp2 > EPS:
         return False
-    if cp1 < 0 and cp2 < 0:
+    if cp1 < -EPS and cp2 < -EPS:
         return False
     return True
 
@@ -99,7 +100,7 @@ while True:
                                 break
                         if not fail:
                             seen[i] = True
-            if seen == [True] * N:
+            if all(seen):
                 hi = th
             else:
                 lo = th

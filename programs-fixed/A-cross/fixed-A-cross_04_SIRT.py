@@ -1,4 +1,6 @@
+
 import sys
+
 
 sys.setrecursionlimit(5000)
 
@@ -12,20 +14,20 @@ def doit(x, y):
         y2 = y + (wn[i] if ch == '.' else -wn[i])
         if 1 <= x2 <= X and 1 <= y2 <= Y and not g[y2][x2]:
             g[y2][x2] = ch
-            return 0
-            doit(x2, y2)
+            doit(x2, y2)  # Removed the return statement here
+    
 
 while True:
     try:
-        X, Y, N = map(int, input().split())
+        X, Y, N = map(int, sys.stdin.readline().split())
     except EOFError:
         break
 
-    g = [['' for _ in range(X + 1)] for _ in range(Y + 1)]
+    g = [['' for _ in range(X + 2)] for _ in range(Y + 2)]
     wm, wn = [0] * N, [0] * N
 
     for i in range(N):
-        entrada = list(map(int, input().split()))
+        entrada = list(map(int, sys.stdin.readline().split()))
         wm[i], wn[i] = entrada[0], entrada[1]
         B = entrada[2]
         boundary_coordinates = entrada[3:]

@@ -8,107 +8,93 @@ class Point:
         self.x = x
         self.y = y
     
-    def __sub__(self, p):
-        return Point(self.x - p.x, self.y - p.y)
+def orientation(p, q, r):
+    val = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y)
+    if val == 0:
+        return 0
+    elif val > 0:
+        return 1
+    else:
+        return 2
+
+def doIntersect(p1, q1, p2, q2):
+    o1 = orientation(p1, q1, p2)
+    o2 = orientation(p1, q1, q2)
+    o3 = orientation(p2, q2, p1)
+    o4 = orientation(p2, q2, q1)
     
-    def __add__(self, p):
-        return Point(self.x + p.x, self.y + p.y)
+    if o1 != o2 and o3 != o4:
+        return True
+    return False
+
+def isInside(polygon, n, p):
+    if n < 3:
+        return False
     
-    def __mul__(self, c):
-        return Point(self.x * c, self.y * c)
+    extreme = Point(9999, p.y)
+    count = 0
+    i = 0
+    
+    while True:
+        next = (i + 1) % n
+        if doIntersect(polygon[i], polygon[next], p, extreme):
+            if orientation(polygon[i], p, polygon[next]) == 0:
+                return isOnSegment(polygon[i], p, polygon[next])
+            count += 1
+        i = next
+        if i == 0:
+            break
+    
+    return count % 2 == 1
 
-    def __truediv__(self, c):
-        return Point(self.x / c, self.y / c)
+N, M = input().split()
+N = int(N)
+M = int(M)
 
-    def len(self):
-        return math.hypot(self.x, self.y)
+F1 = []
+FZ1 = []
+F2 = []
+FZ2 = []
 
+for i in range(M):
+    x1, y1, z1, x2, y2, z2 = map(int, input().split())
+    F1.append(Point(x1, y1))
+    FZ1.append(z1)
+    F2.append(Point(x2, y2))
+    FZ2.append(z2)
 
-def DotProd(a, b):
-    return a.x*b.x + a.y*b.y
+lo = 0.0
+hi = PI / 2
 
+res = None
 
-def CrossProd(a, b):
-    return a.x*b.y - a.y*b.x
+for rep in range(64):
+    theta = (lo + hi) / 2.0
+    allSee = True
+    
+    for i in range(N):
+        see = False
+        for j in range(M):
+            pol = []
+            pol.append(Point(F1[j].x - FZ1[j] * math.tan(theta), F1[j].y))
+            pol.append(Point(F2[j].x - FZ2[j] * math.tan(theta), F2[j].y))
+            pol.append(Point(F2[j].x + FZ2[j] * math.tan(theta), F2[j].y))
+            pol.append(Point(F1[j].x + FZ1[j] * math.tan(theta), F1[j].y))
+            
+            if isInside(pol, len(pol), grenades[i]):
+                see = True
+                break
+                
+        if not see:
+            allSee = False
+            break
+    if allSee:
+        hi = theta
+        res = theta
+    else:
+        lo = theta
 
-
-def LineSegIntersection(a1, a2, b1, b2):
-    cp1 = CrossProd(b2 - b1, a1 - b1)
-    cp2 = CrossProd(b2 - b1, a2 - b1)
-    if cp1 > 0 and cp2 > 0:
-        return False
-    if cp1 < 0 and cp2 < 0:
-        return False
-    cp1 = CrossProd(a2 - a1, b1 - a1)
-    cp2 = CrossProd(a2 - a1, b2 - a1)
-    if cp1 > 0 and cp2 > 0:
-        return False
-    if cp1 < 0 and cp2 < 0:
-        return False
-    return True
-
-
-while True:
-    try:
-        N, M = map(int, input().split())
-        I = []
-        for _ in range(N):
-            NI = int(input())
-            island = []
-            for _ in range(NI):
-                x, y = map(float, input().split())
-                island.append(Point(x, y))
-            I.append(island)
-        F1 = []
-        F2 = []
-        FZ1 = []
-        FZ2 = []
-        for _ in range(M):
-            x1, y1, z1, x2, y2, z2 = map(float, input().split())
-            F1.append(Point(x1, y1))
-            FZ1.append(z1)
-            F2.append(Point(x2, y2))
-            FZ2.append(z2)
-
-        lo = 0.0
-        hi = PI/2
-        for rep in range(64):
-            th = (hi + lo) / 2
-            seen = [False] * N
-            for f in range(M):
-                poly = []
-                ortho = Point(F1[f].y - F2[f].y, F2[f].x - F1[f].x)
-                ortho = ortho / ortho.len()
-                poly.append(F1[f] - ortho * (FZ1[f] * math.tan(th)))
-                poly.append(F2[f] - ortho * (FZ2[f] * math.tan(th)))
-                poly.append(F2[f] + ortho * (FZ2[f] * math.tan(th)))
-                poly.append(F1[f] + ortho * (FZ1[f] * math.tan(th)))
-                mxx = 1e7
-                for point in poly:
-                    mxx = max(mxx, point.x)
-                for i in range(len(I)):
-                    if not seen[i]:
-                        fail = False
-                        for p in I[i]:
-                            cnt = 0
-                            for j in range(len(poly)):
-                                a = poly[j]
-                                b = poly[(j + 1) % len(poly)]
-                                cnt += LineSegIntersection(a, b, p, Point(mxx + 1337, p.y + 7331))
-                            if cnt % 2 == 0:
-                                fail = True
-                                break
-                        
-                        seen[i] = True
-            if seen == [True] * N:
-                hi = th
-            else:
-                lo = th
-
-        if hi == PI/2:
-            print("impossible")
-        else:
-            print("{:.9f}".format((hi + lo) / 2 * 180 / PI))
-
-    except EOFError:
-        break
+if not res:
+    print("impossible")
+else:
+    print("{:.9f}".format(res * 180 / PI))

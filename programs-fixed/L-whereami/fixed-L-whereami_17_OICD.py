@@ -4,9 +4,8 @@ from collections import defaultdict
 
 def main():
     
-    X, Y = map(int, input().split())
-    g = [input().strip() for _ in range(X)]
-    g.reverse()
+    X = int(input())
+    g = [list(map(int,input().split())) for _ in range(X)]
     
     dist = [[0] * 201 for _ in range(201)]
     x, y, dx, dy, step, stepn, cur = 100, 100, 0, 1, 0, 1, 0
@@ -26,21 +25,20 @@ def main():
     obs = defaultdict(list) if X < 100 else None
 
     for y in range(X):
-        for x in range(Y):
-            if g[y][x] == 'X':
+        for x in range(len(g[y])):
+            if g[y][x] >= 1:
                 i = 0
                 for sy in range(X):
-                    for sx in range(Y):
+                    for sx in range(len(g[y])):
                         obs[dist[y - sy + 100][x - sx + 100]].append(i)
                         i+=1
 
-    comp = [0] * (X * Y)
-    compt = [0] * (X * Y)
-    compsz = [X * Y]
-
+    comp = [0] * (X * X)
+    compt = [0] * (X * X)
+    compsz = [X * X]
 
     t = 0
-    while len(compsz) < X * Y:
+    while len(compsz) < X * X:
         if len(obs[t]) !=0:
             v = obs[t]
             v.sort(key=lambda x: comp[x])
@@ -71,16 +69,16 @@ def main():
     mx = max(compt)
     tot = sum(compt)
 
-    print(f"{tot / X / Y:.9f}")
+    print(f"{tot / X / X:.9f}")
     print(mx)
-
+    
     first = True
-    for i in range(X * Y):
+    for i in range(X * X):
         if compt[comp[i]] == mx:
             if not first:
                 print(' ', end='')
             first = False
-            print(f"({i % Y + 1},{i // Y + 1})", end='')
+            print(f"({i % X + 1},{i // X + 1})", end='')
 
     print()
 

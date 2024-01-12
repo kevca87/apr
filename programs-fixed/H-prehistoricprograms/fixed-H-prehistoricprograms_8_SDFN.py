@@ -1,35 +1,37 @@
+
 try:
-    N = int(input())
-    fv, bv = [], []
-    tot = 0
-    for i in range(N):
-        S = input()
-        b = 0
-        mn = 0
-        for j in range(len(S)):
-            b += (S[j] == '(') - (S[j] == ')')
-            mn = min(mn, b)
-        if b >= 0:
-            fv.append([-mn, b, i])
+    num_strings = int(input())
+    front, back = [], []
+    total = 0
+    for i in range(num_strings):
+        string = input()
+        balance = 0
+        min_balance = 0
+        for char in string:
+            balance += (char == '(') - (char == ')')
+            min_balance = min(min_balance, balance)
+        if balance >= 0:
+            front.append([-min_balance, balance, i])
         else:
-            bv.append([b-mn, -b, i])
-        tot += b
-    if tot:
+            back.append([balance-min_balance, -balance, i])
+        total += balance
+
+    if total != 0:
         raise Exception
 
     for i in range(2):
-        v = fv if i else bv
-        v.sort()
-        cur = 0
-        for j in range(len(v)):
-            if cur < v[j][0]:
+        partition = front if i == 0 else back
+        partition.sort()
+        current_balance = 0
+        for p in partition:
+            if current_balance < p[0]:
                 raise Exception
-            cur += v[j][1]
-        
+            current_balance += p[1]
+
     else:
-        bv.reverse()
-        for v in fv:
-            print(v[2]+1)
-    
+        back.reverse()
+        for element in front:
+            print(element[2]+1)
+
 except Exception:
     print("impossible")

@@ -16,10 +16,10 @@ class Point:
     
     def __mul__(self, c):
         return Point(self.x * c, self.y * c)
-
+    
     def __truediv__(self, c):
         return Point(self.x / c, self.y / c)
-
+    
     def len(self):
         return math.hypot(self.x, self.y)
 
@@ -106,9 +106,9 @@ while True:
                 lo = th
 
         if hi == PI/2:
-            print("impossible")
+            print('Impossible')
         else:
-            print("{:.9f}".format(hi))
+            print('{:.9f}'.format(hi))
 
     except EOFError:
         break

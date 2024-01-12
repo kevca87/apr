@@ -1,3 +1,4 @@
+
 import math
 
 PI = 2*math.acos(0)
@@ -22,14 +23,11 @@ class Point:
     def len(self):
         return math.hypot(self.x, self.y)
 
-
 def DotProd(a, b):
     return a.x*b.x + a.y*b.y
 
-
 def CrossProd(a, b):
     return a.x*b.y - a.y*b.x
-
 
 def LineSegIntersection(a1, a2, b1, b2):
     cp1 = CrossProd(b2 - b1, a1 - b1)
@@ -45,7 +43,6 @@ def LineSegIntersection(a1, a2, b1, b2):
     if cp1 < 0 and cp2 < 0:
         return False
     return True
-
 
 while True:
     try:
@@ -82,7 +79,6 @@ while True:
                 poly.append(F2[f] - ortho * (FZ2[f] * math.tan(th)))
                 poly.append(F2[f] + ortho * (FZ2[f] * math.tan(th)))
                 poly.append(F1[f] + ortho * (FZ1[f] * math.tan(th)))
-                
                 mxx = 1e7
                 for point in poly:
                     mxx = max(mxx, point.x)
@@ -100,7 +96,7 @@ while True:
                                 break
                         if not fail:
                             seen[i] = True
-            if seen == [True] * N:
+            if all(seen):
                 hi = th
             else:
                 lo = th

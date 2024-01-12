@@ -1,3 +1,4 @@
+
 import sys
 sys.setrecursionlimit(5000)
 
@@ -19,7 +20,7 @@ while True:
     except EOFError:
         break
 
-    g = [['' for _ in range(X + 1)] for _ in range(Y + 1)]
+    g = [['' for _ in range(X + 1)] for _ in range(Y + 1)] #corrected here
     wm, wn = [0] * N, [0] * N
 
     for i in range(N):
@@ -37,8 +38,8 @@ while True:
             if 1 <= x2 <= X and 1 <= y2 <= Y:
                 g[y2][x2] = '.'
 
-    for y in range(-Y, Y + 1):
-        for x in range(-X, X + 1):
+    for y in range(-Y, 2 * Y + 1):
+        for x in range(-X, 2 * X + 1):
             doit(x, y)
 
     for y in range(1, Y + 1):

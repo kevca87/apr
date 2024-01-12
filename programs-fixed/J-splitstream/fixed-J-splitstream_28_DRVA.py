@@ -1,17 +1,18 @@
+
 import sys
 sys.setrecursionlimit(100000)
 
 M, N, Q = map(int, input().split())
 nd = [[] for _ in range(N+1)]
 mx = 0
-for _ in range(N):
+for i in range(1, N+1):
   ch, x, y, z = input().split()
   x, y, z = int(x), int(y), int(z)
   mx = max(mx, x, y, z)
   if ch == 'S':
-      nd.append([x, 0, y, z])
+      nd[i] = [x, 0, y, z]
   else:
-      nd.append([x, y, z, 0])
+      nd[i] = [x, y, z, 0]
 
 oin = [0] * (mx+1)
 oout = [0] * (mx+1)
@@ -40,7 +41,7 @@ for i in range(2, mx+1):
 
 for _ in range(Q):
   x, k = map(int, input().split())
-  if k > osz[x]:
+  if osz[x] < k or osz[x] == -1:
       print("none")
       continue
   while x != 1:
@@ -48,7 +49,7 @@ for _ in range(Q):
       if v[1]:
           sz = min(osz[v[0]], osz[v[1]])
           if k <= 2 * sz:
-              x = v[not k % 2]
+              x = v[bool(k % 2)]
               k = (k+1) // 2
           else:
               x = v[osz[v[1]] > osz[v[0]]]

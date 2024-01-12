@@ -1,12 +1,11 @@
+
 from typing import List
 from collections import defaultdict
 
 def main():
-    
     X, Y = map(int, input().split())
-    g = [input().strip() for _ in range(Y)]
-    g.reverse()
-    
+    g = [[int(x) for x in input().split()] for _ in range(Y)]
+
     dist = [[0] * 201 for _ in range(201)]
     x, y, dx, dy, step, stepn, cur = 100, 100, 0, 1, 0, 1, 0
 
@@ -21,32 +20,26 @@ def main():
             if dy:
                 stepn += 1
         cur += 1
-        print("dist[", y, "][", x, "] = ", cur)
 
     obs = defaultdict(list)
 
     for y in range(Y):
         for x in range(X):
-            if g[y][x] == 'X':
-                i = 0
-                for sy in range(Y):
-                    for sx in range(X):
-                        obs[dist[y - sy + 100][x - sx + 100]].append(i)
-                        i+=1
-
-    print("obs", obs)
+            i = 0
+            for sy in range(Y):
+                for sx in range(X):
+                    obs[dist[y - sy + 100][x - sx + 100]].append(i)
+                    i += 1
 
     comp = [0] * (X * Y)
     compt = [0] * (X * Y)
     compsz = [X * Y]
 
-
     t = 0
     while len(compsz) < X * Y:
-        if len(obs[t]) !=0:
+        if obs[t]:
             v = obs[t]
-            v.sort(key=lambda x: comp[x])
-            v.reverse()
+            v.sort(key=lambda x: comp[x], reverse=True)
             i, j = 0, 0
             while i < len(v):
                 j += 1
@@ -57,7 +50,7 @@ def main():
                 
                 if j - i != sz: 
                     if j - i == 1:
-                        compt[len(compsz)] = t
+                        compt.append(t)
                     sz -= j - i
                     compsz[comp[v[i]]] = sz
                     if sz == 1:
@@ -69,11 +62,10 @@ def main():
                 i = j
         t += 1
 
-    
     mx = max(compt)
     tot = sum(compt)
 
-    print(f"{tot / X / Y:.9f}")
+    print("%.9f" %(float(tot) / X / Y))
     print(mx)
 
     first = True
@@ -82,10 +74,9 @@ def main():
             if not first:
                 print(' ', end='')
             first = False
-            print(f"({i % X + 1},{i // X + 1})", end='')
+            print("(%d,%d)" %(i % X + 1, i // X + 1), end='')
 
     print()
-
 
 if __name__ == "__main__":
     main()

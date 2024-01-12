@@ -1,3 +1,4 @@
+
 def main():
     while True:
         try:
@@ -22,7 +23,7 @@ def main():
 
                 qp = q ** N
                 pp = (q - p) ** N
-                if (M * p) % (qp - pp) == 0:  # Fixed the comparison operator
+                if (M * p) % (qp - pp) == 0:
                     print(p, q)
                     break
             else:

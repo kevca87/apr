@@ -1,12 +1,16 @@
+
 from typing import List
 from collections import defaultdict
 
 def main():
-    
-    X, Y = map(int, input().split())
-    g = [input().strip() for _ in range(Y)]
-    g.reverse()
-    
+
+    X = int(input().strip())
+    Y = X
+    g = []
+    for _ in range(X):
+        row = list(map(int,input().split()))
+        g.append(row)
+
     dist = [[0] * 201 for _ in range(201)]
     x, y, dx, dy, step, stepn, cur = 100, 100, 0, 1, 0, 1, 0
 
@@ -43,8 +47,7 @@ def main():
             v = obs[t]
             v.sort(key=lambda x: comp[x])
             v.reverse()
-            i = 0
-            j = 0
+            i, j = 0, 0
             while i < len(v):
                 j += 1
                 while j < len(v) and comp[v[j]] == comp[v[i]]:
@@ -70,7 +73,7 @@ def main():
     mx = max(compt)
     tot = sum(compt)
 
-    print("{:.9f}".format(tot / X / Y))
+    print(f"{tot / X / Y:.9f}")
     print(mx)
 
     first = True
@@ -79,7 +82,7 @@ def main():
             if not first:
                 print(' ', end='')
             first = False
-            print("({},{})".format(i % X + 1, i // X + 1), end='')
+            print(f"({i % X + 1},{i // X + 1})", end='')
 
     print()
 

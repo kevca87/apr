@@ -1,3 +1,4 @@
+
 def main():
     while True:
         try:
@@ -12,23 +13,25 @@ def main():
         q = 2
         while True:
             pw.append(q ** N)
+            flag = False
             for p in range(1, q):
                 d = pw[q] - pw[q - p]
                 if d > 1.1 * M * q:
                     if p == 1:
                         print("impossible")
+                        flag = True 
                         break
                     continue
 
                 qp = q ** N
                 pp = (q - p) ** N
-                if (M * p) % (qp - pp) == 0:
-                    p += 1
-                    print(p, q)
+                if (M * p) % (qp - pp) == 0:                                      
+                    print(p+1, q)
+                    flag = True
                     break
+            if flag:
+                break
             else:
                 q += 1
-                continue
-            break
 
 main()

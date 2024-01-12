@@ -3,11 +3,14 @@ from typing import List
 from collections import defaultdict
 
 def main():
-    X, Y = map(int, input().split())
-    g = [input().strip() for _ in range(Y)]
-    g.reverse()
-    
-    dist = [[0] * 201 for _ in range(201)]
+    Y, X = map(int, input().split())
+    g = []
+    for _ in range(Y):
+        row = list(map(int, input().split()))
+        g.append(row)
+
+    dist = [[0]*201 for _ in range(201)]
+
     x, y, dx, dy, step, stepn, cur = 100, 100, 0, 1, 0, 1, 0
 
     while y < 201:
@@ -26,12 +29,12 @@ def main():
 
     for y in range(Y):
         for x in range(X):
-            if g[y][x] == 'X':
+            if g[y][x] != 0:
                 i = 0
                 for sy in range(Y):
                     for sx in range(X):
-                        obs[dist[y - sy + 100][x - sx + 100]].append(i)
-                        i += 1
+                        obs[dist[sy][sx]].append(i)
+                        i+=1
 
     comp = [0] * (X * Y)
     compt = [0] * (X * Y)
@@ -39,7 +42,7 @@ def main():
 
     t = 0
     while len(compsz) < X * Y:
-        if len(obs[t]) != 0:
+        if len(obs[t]) !=0:
             v = obs[t]
             v.sort(key=lambda x: comp[x])
             v.reverse()
@@ -48,7 +51,7 @@ def main():
                 j += 1
                 while j < len(v) and comp[v[j]] == comp[v[i]]:
                     j += 1
-                    
+                
                 sz = compsz[comp[v[i]]]
                 
                 if j - i != sz: 
@@ -58,18 +61,17 @@ def main():
                     compsz[comp[v[i]]] = sz
                     if sz == 1:
                         compt[comp[v[i]]] = t
-                    for k in range(i, j):
+                    for k in range(i,j):
                         comp[v[k]] = len(compsz)
                     compsz.append(j - i)
                     
                 i = j
         t += 1
-
     
     mx = max(compt)
     tot = sum(compt)
 
-    print(f"{tot / X / Y:.9f}")
+    print(f"{round(tot / X / Y)}")
     print(mx)
 
     first = True

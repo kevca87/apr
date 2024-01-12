@@ -1,3 +1,4 @@
+
 from typing import List
 from collections import defaultdict
 
@@ -22,7 +23,6 @@ def main():
         cur += 1
 
     obs = defaultdict(list)
-
     for y in range(Y):
         for x in range(X):
             if g[y][x] == 'X':
@@ -30,12 +30,11 @@ def main():
                 for sy in range(Y):
                     for sx in range(X):
                         obs[dist[y - sy + 100][x - sx + 100]].append(i)
-                        i+=1
+                        i += 1
 
     comp = [0] * (X * Y)
     compt = [0] * (X * Y)
-    compsz = [X * Y]
-
+    compsz = [1] * (X * Y)
     t = 0
     while len(compsz) < X * Y:
         if len(obs[t]) !=0:
@@ -47,12 +46,12 @@ def main():
                 j += 1
                 while j < len(v) and comp[v[j]] == comp[v[i]]:
                     j += 1
-                
+
                 sz = compsz[comp[v[i]]]
-                
+
                 if j - i != sz: 
                     if j - i == 1:
-                        compt[len(compsz)] = t
+                        compt[len(compsz) - 1] = t
                     sz -= j - i
                     compsz[comp[v[i]]] = sz
                     if sz == 1:
@@ -60,11 +59,10 @@ def main():
                     for k in range(i, j):
                         comp[v[k]] = len(compsz)
                     compsz.append(j - i)
-                    
+
                 i = j
         t += 1
 
-    
     mx = max(compt)
     tot = sum(compt)
 
@@ -73,11 +71,11 @@ def main():
 
     first = True
     for i in range(X * Y):
-        if compt[comp[i]] == mx:
+        if compt[i] == mx:
             if not first:
                 print(' ', end='')
             first = False
-            print(f"({i % X + 1},{i // X + 1})", end='')
+            print(f"({i % Y + 1},{i // Y + 1})", end='')
 
     print()
 

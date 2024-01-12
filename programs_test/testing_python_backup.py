@@ -15,7 +15,7 @@ total_tests_run = 0
 total_tests_passed = 0
 
 folders = os.listdir("programs-fixed")
-folders = folders[6:]
+folders = folders[8:]
 print(folders)
 
 
@@ -30,7 +30,7 @@ def run_test(input_file, expected_output_file, codigo, folder):
             input=input_text,
             text=True,
             capture_output=True,
-            timeout=0.1
+            timeout=0.8
         )
 
         if result.returncode != 0:

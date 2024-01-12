@@ -1,86 +1,67 @@
-I have fixed the code, here it is:
 
 from typing import List
 from collections import defaultdict
 
 def main():
-    X, Y = map(int, input().split())
-    g = [input().strip() for _ in range(Y)]
-    g.reverse()
     
-    dist = [[0] * 201 for _ in range(201)]
-    x, y, dx, dy, step, stepn, cur = 100, 100, 0, 1, 0, 1, 0
+    N = int(input())
+    g = [list(map(int, input().split())) for _ in range(N)]
+    
+    dist = [[0]*201 for _ in range(201)]
+    x, y, dx, dy = 100, 100, 0, 1
+    t_p, t_g = 0, 1
+    cur = 0
 
-    while y < 201:
+    while 0 <= y < 201 and 0 <= x < 201:
         dist[y][x] = cur
         x += dx
         y += dy
-        step += 1
-        if step == stepn:
+        t_p += 1
+        if t_p == t_g:
             dx, dy = dy, -dx
-            step = 0
+            t_p = 0
             if dy:
-                stepn += 1
+                t_g += 1
         cur += 1
 
     obs = defaultdict(list)
+    for i, (ty, tx, tv) in enumerate(g):
+        for x in range(tx, tx + tv):
+            for y in range(ty, ty + tv):
+                if 0 <= y < 201 and 0 <= x < 201:
+                    obs[dist[y][x]].append(i)
 
-    for y in range(Y):
-        for x in range(X):
-            if g[y][x] == 'X':
-                i = 0
-                for sy in range(Y):
-                    for sx in range(X):
-                        obs[dist[y - sy + 100][x - sx + 100]].append(i)
-                        i+=1
-
-    comp = ([0] * X) * Y
-    compt = [0] * (X * Y)
-    compsz = [X * Y]
+    cnt = [0] * N
+    turned = [0] * N
+    sizes = [len(obs[i]) for i in range(N)]
 
     t = 0
-    while len(compsz) < X * Y:
-        if len(obs[t]) !=0:
-            v = obs[t]
-            v.sort(key=lambda x: comp[x])
-            v.reverse()
-            i, j = 0, 0
-            while i < len(v):
+    while obs[t]:
+        v = obs[t]
+        v.sort(key=lambda x: cnt[x])
+        v.reverse()
+        i, j = 0, 0
+        while i < len(v):
+            j += 1
+            while j < len(v) and cnt[v[j]] == cnt[v[i]]:
                 j += 1
-                while j < len(v) and comp[v[j]] == comp[v[i]]:
-                    j += 1
-                
-                sz = compsz[comp[v[i]]]
-                
-                if j - i != sz: 
-                    if j - i == 1:
-                        compt[len(compsz)] = t
-                    sz -= j - i
-                    compsz[comp[v[i]]] = sz
-                    if sz == 1:
-                        compt[comp[v[i]]] = t
-                    for k in range(i, j):
-                        comp[v[k]] = len(compsz)
-                    compsz.append(j - i)
-                    
-                i = j
+            size = sizes[cnt[v[i]]]
+            if j - i != size:
+                if j - i == 1:
+                    turned.append(t)
+                size -= j - i
+                sizes[cnt[v[i]]] = size
+                if size == 1:
+                    turned[cnt[v[i]]] = t
+                for k in range(i, j):
+                    cnt[v[k]] = len(turned) - 1
+                sizes.append(j - i)
+            i = j
         t += 1
 
-    mx = max(compt)
-    tot = sum(compt)
-
-    print(f"{tot / X / Y:.9f}")
-    print(mx)
-
-    first = True
-    for i in range(X * Y):
-        if compt[comp[i]] == mx:
-            if not first:
-                print(' ', end='')
-            first = False
-            print(f"({i % X + 1},{i // X + 1})", end='')
-
-    print()
+    print(f'{(sum(turned) / N + 1) * 2:.9f}')
+    print(max(turned) * 2 + 1)
+    print(' '.join(map(lambda x: str(x + 1), [i for i in range(N) if turned[i] == max(turned)])))
 
 if __name__ == "__main__":
     main()

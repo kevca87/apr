@@ -1,11 +1,12 @@
+
 from typing import List
 from collections import defaultdict
 
 def main():
-    X, Y = map(int, input().split())
-    g = [input().strip() for _ in range(Y)]
-    g.reverse()
     
+    grid = [list(map(int, input().split())) for _ in range(int(input().strip()))]
+    X, Y = len(grid[0]), len(grid)
+
     dist = [[0] * 201 for _ in range(201)]
     x, y, dx, dy, step, stepn, cur = 100, 100, 0, 1, 0, 1, 0
 
@@ -25,7 +26,7 @@ def main():
 
     for y in range(Y):
         for x in range(X):
-            if g[y][x] == 'X':
+            if grid[y][x] == 'X':
                 i = 0
                 for sy in range(Y):
                     for sx in range(X):
@@ -34,11 +35,11 @@ def main():
 
     comp = [0] * (X * Y)
     compt = [0] * (X * Y)
-    compsz = [X * Y]
+    compsz = [1] * (X * Y)
 
     t = 0
     while len(compsz) < X * Y:
-        if len(obs[t]) !=0:
+        if t in obs and obs[t]:
             v = obs[t]
             v.sort(key=lambda x: comp[x])
             v.reverse()
@@ -55,8 +56,6 @@ def main():
                         compt[len(compsz)] = t
                     sz -= j - i
                     compsz[comp[v[i]]] = sz
-                    if sz == 1:
-                        compt[comp[v[i]]] = t
                     for k in range(i, j):
                         comp[v[k]] = len(compsz)
                     compsz.append(j - i)
@@ -64,11 +63,10 @@ def main():
                 i = j
         t += 1
 
-    
     mx = max(compt)
     tot = sum(compt)
 
-    print(f"--{tot / X / Y:.9f}")
+    print(tot / (X * Y))
     print(mx)
 
     first = True

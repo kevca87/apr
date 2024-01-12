@@ -1,3 +1,4 @@
+
 def main():
     while True:
         try:
@@ -5,15 +6,15 @@ def main():
         except:
             break  # Exit the loop if input is not valid
 
-        if N > 200:
-            N = 200
+        if N > 106:
+            N = 106
 
-        pw = [0, 0]  # To adjust indices to match C++ code
+        pw = [1, 1]  # To adjust indices to match C++ code
         q = 2
         while True:
             pw.append(q ** N)
             for p in range(1, q):
-                d = pw[q] // pw[q - p]  # Fixing the denominator calculation
+                d = pw[q] - pw[q - p]
                 if d > 1.1 * M * q:
                     if p == 1:
                         print("impossible")

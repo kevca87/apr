@@ -1,57 +1,48 @@
-import sys
-sys.setrecursionlimit(10000)  # Establece un límite más alto
 
+import sys
+sys.setrecursionlimit(10000)
 
 def doit(x, y):
-    ch = g[y][x] if (1 <= x <= X and 1 <= y <= Y) else '.'
+    if not(1 <= x <= X and 1 <= y <= Y):
+        return
+    ch = g[y][x]
     if ch == ' ':
         return
     for i in range(N):
         x2 = x + (wm[i] if ch == '.' else -wm[i])
         y2 = y + (wn[i] if ch == '.' else -wn[i])
-        
-        if 1 <= x2 <= X and 1 <= y2 <= Y:
-            if g[y2][x2] == ' ':
-                g[y2][x2] = ch
-                doit(x2, y2)
+        if not(1 <= x2 <= X and 1 <= y2 <= Y):
+            continue
+        if g[y2][x2] == ' ':
+            g[y2][x2] = ch
+            doit(x2, y2)
 
 while True:
     try:
-        X, Y, N = map(int, input().split())
-        g = [[' ' for _ in range(X + 1)] for _ in range(Y + 1)]
+        X, Y, N = map(int, input().strip().split())
+        g = [[' ' for _ in range(X + 2)] for _ in range(Y + 2)]
         wm = [0] * N
         wn = [0] * N
         for i in range(N):
-            line = input().split()
-            wm[i] = int(line[0])
-            wn[i] = int(line[1])
-            B = int(line[2])
-            pos = 3
-            for j in range(B):  
-                x = int(line[pos])
-                pos = pos + 1
-                y = int(line[pos])
-                pos = pos + 1
-                g[y][x] = '#'
-                x2 = x - wm[i]
-                y2 = y - wn[i]
+            line = list(map(int, input().strip().split()))
+            wm[i] = line[0]
+            wn[i] = line[1]
+            B = line[2]
+            for j in range(B):
+                g[line[2*j+4]][line[2*j+3]] = '#'
+                x2 = line[2*j+3] - wm[i]
+                y2 = line[2*j+4] - wn[i]
                 if 1 <= x2 <= X and 1 <= y2 <= Y:
                     g[y2][x2] = '.'
-
-        for y in range(-Y, 2 * Y + 1):
-            for x in range(-X, 2 * X + 1):
+        for y in range(1, Y + 1):
+            for x in range(1, X + 1):
                 doit(x, y)
-            print()
-
         for y in range(1, Y + 1):
-            for x in range(1, X + 1):
-                print(g[y][x] if (g[y][x] != ' ') else '.', end='')
-            print()
+            print(''.join(g[y][1:X+1]))
         print()
-
         for y in range(1, Y + 1):
             for x in range(1, X + 1):
-                print(g[y][x] if (g[y][x] != ' ') else '#', end='')
-            print()
+                g[y][x] = '#' if g[y][x] == ' ' else g[y][x]
+            print(''.join(g[y][1:X+1]))
     except EOFError:
         break

@@ -1,18 +1,19 @@
+
 import math
 
-PI = 2*math.acos(0)
+PI = 2*math.acos(0.0)
 
 class Point:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-    
+
     def __sub__(self, p):
         return Point(self.x - p.x, self.y - p.y)
-    
+
     def __add__(self, p):
         return Point(self.x + p.x, self.y + p.y)
-    
+
     def __mul__(self, c):
         return Point(self.x * c, self.y * c)
 
@@ -23,28 +24,24 @@ class Point:
         return math.hypot(self.x, self.y)
 
 
-def DotProd(a, b):
-    return a.x*b.x + a.y*b.y
-
-
-def CrossProd(a, b):
+def crossProd(a, b):
     return a.x*b.y - a.y*b.x
 
 
-def LineSegIntersection(a1, a2, b1, b2):
-    cp1 = CrossProd(b2 - b1, a1 - b1)
-    cp2 = CrossProd(b2 - b1, a2 - b1)
-    if cp1 > 0 and cp2 > 0:
-        return False
-    if cp1 < 0 and cp2 < 0:
-        return False
-    cp1 = CrossProd(a2 - a1, b1 - a1)
-    cp2 = CrossProd(a2 - a1, b2 - a1)
-    if cp1 > 0 and cp2 > 0:
-        return False
-    if cp1 < 0 and cp2 < 0:
-        return False
-    return True
+def lineIntersect(a,b,c,d):
+    return crossProd(a,b) * crossProd(c,d) < 0
+
+
+def segIntersect(a, b, c, d):
+    if a > b:
+        a,b = b,a
+    if c > d:
+        c,d = d,c
+    return max(a,c) <= min(b,d)
+
+
+def lineSegIntersection(a1, a2, b1, b2):
+    return lineIntersect(a1-a2, b1-a2, c1-c2, d1-c2) and segIntersect(a1.x, a2.x, b1.x, b2.x) and segIntersect(a1.y, a2.y, b1.y, b2.y)
 
 
 while True:
@@ -72,42 +69,28 @@ while True:
         lo = 0.0
         hi = PI/2
         for rep in range(64):
-            th = (hi + lo) / 2
-            seen = [False] * N
+            th = (hi+lo)/2
+            seen = [False]*N
             for f in range(M):
                 poly = []
-                ortho = Point(F1[f].y - F2[f].y, F2[f].x - F1[f].x)
-                ortho = ortho / ortho.len()
-                poly.append(F1[f] - ortho * (FZ1[f] * math.tan(th)))
-                poly.append(F2[f] - ortho * (FZ2[f] * math.tan(th)))
-                poly.append(F2[f] + ortho * (FZ2[f] * math.tan(th)))
-                poly.append(F1[f] + ortho * (FZ1[f] * math.tan(th)))
-                mxx = 1e7
-                for point in poly:
-                    mxx = max(mxx, point.x)
-                for i in range(len(I)):
-                    if not seen[i]:
-                        fail = False
-                        for p in I[i]:
-                            cnt = 0
-                            for j in range(len(poly)):
-                                a = poly[j]
-                                b = poly[(j + 1) % len(poly)]
-                                cnt += LineSegIntersection(a, b, p, Point(mxx + 1337, p.y + 7331))
-                            if cnt % 2 == 0:
-                                fail = True
-                                break
-                        if not fail:
+                dir = (F2[f] - F1[f]) / (F2[f] - F1[f]).len()
+                p1 = F1[f] - dir*FZ1[f]*math.tan(th)
+                p2 = F2[f] + dir*FZ2[f]*math.tan(th)
+                p3 = F2[f] - dir*FZ2[f]*math.tan(th)
+                p4 = F1[f] + dir*FZ1[f]*math.tan(th)
+                poly.extend([p1, p2, p3, p4])
+                for i, P in enumerate(I):
+                    if seen[i]:
+                        continue
+                    L = len(P)
+                    for j in range(L):
+                        if lineSegIntersection(P[j], P[(j+1)%L], poly[0], poly[2]) or lineSegIntersection(P[j], P[(j+1)%L], poly[1], poly[3]):
                             seen[i] = True
-            if seen == [True] * N:
-                hi = th
-            else:
-                lo = th
+                            break
 
         if hi == PI/2:
             print("impossible")
         else:
             print("{:.9f}".format((hi + lo) / 2 * 180 / PI))
-
     except EOFError:
         break

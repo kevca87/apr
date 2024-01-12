@@ -9,25 +9,28 @@ def main():
         if N > 200:
             N = 200
 
-        pw = [0, 0]  # To adjust indices to match C++ code
-        q = 2
-        while True:
-            pw.append(q ** N)
-            for p in range(1, q):
-                d = pw[q] - pw[q - p]
-                if d > 1.1 * M * q:
-                    if p == 1:
-                        print("impossible")
-                        break
-                    continue
-
-                qp = q ** N
-                pp = (q - p) ** N
-                if (M * p) % (qp - pp) == 0:
-                    print(p, q)
-                    break
+        if N == 1:
+            print(M, 1)
+            continue
+        
+        lo = 1; hi = 1000000000*1000000000*10;
+        ansnum=0; ansdenom=0;
+        while(lo<hi):
+            mid=(lo+hi)/2
+            sums=0
+            sums1=0
+            curr=1.0
+            for i in range(N):
+                sums+=curr
+                curr/=mid
+               
+            if sums>=M:
+                ansnum=sums
+                ansdenom=mid
+                hi=mid
             else:
-                continue
-            break
+                lo=mid+1
+        
+        print(int(ansnum), '/', int(ansdenom))
 
 main()

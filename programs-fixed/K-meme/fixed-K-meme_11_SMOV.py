@@ -33,9 +33,6 @@ class Point:
 
     def lensqr(self):
         return self.x * self.x + self.y * self.y
-    
-    def print(self):
-        print("(",self.x,",",self.y,")")
 
 def init():
     random.seed()
@@ -45,7 +42,6 @@ def init():
     ret = 0 
 
 def doit(x):
-    
     if len(ch[x]) == 0:
         return (p[x], p[x])
     result = doit(ch[x][0])
@@ -64,14 +60,12 @@ def doit(x):
     return (-mxtot + mndiff, -mntot + mxdiff)
 
 def tryAngle(dir):
-    global cmpx, cmpy, ret
+    global cmpx, cmpy, ret  
     cmpx = dir.x
     cmpy = dir.y
     result = doit(1)
-    
     mn = result[0]
     mx = result[1]
-    
     ret = max(ret, mn.lensqr())
     ret = max(ret, mx.lensqr())
     return (mn, mx)
@@ -81,7 +75,6 @@ def traceHull(a, b):
         return
     result = tryAngle((b-a).ortho())
     c = result[1]
- 
     if a < c:
         traceHull(c, b)
         traceHull(a, c)
@@ -101,7 +94,6 @@ for i in range(1, N + 1):
         p[i] = Point(x, y)
     else:
         ch[i] = list(map(int, line[1:]))
-
 
 ret = 0
 angles = tryAngle(Point(1, 0))

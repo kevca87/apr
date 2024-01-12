@@ -1,6 +1,6 @@
+
 import sys
 sys.setrecursionlimit(10000)  # Establece un límite más alto
-
 
 def doit(x, y):
     ch = g[y][x] if (1 <= x <= X and 1 <= y <= Y) else '.'
@@ -15,23 +15,22 @@ def doit(x, y):
                 g[y2][x2] = ch
                 doit(x2, y2)
 
-
 while True:
     try:
-        X, Y, N = map(int, input().split())
+        X, Y, N = list(map(int, input().split()))  # Corrige el uso de map
         g = [[' ' for _ in range(X + 1)] for _ in range(Y + 1)]
         wm = [0] * N
         wn = [0] * N
         for i in range(N):
-            line = input().split()
-            wm[i] = int(line[0])
-            wn[i] = int(line[1])
-            B = int(line[2])
+            line = list(map(int, input().split()))  # Corrige el uso de map
+            wm[i] = line[0]
+            wn[i] = line[1]
+            B = line[2]
             pos = 3
-            for j in range(B):  
-                x = int(line[pos])
+            for j in range(B):
+                x = line[pos]
                 pos = pos + 1
-                y = int(line[pos])
+                y = line[pos]
                 pos = pos + 1
                 g[y][x] = '#'
                 x2 = x - wm[i]

@@ -1,51 +1,22 @@
 
-import random
+import sys
+sys.setrecursionlimit(10**6)
 
 class Point:
     def __init__(self, x, y):
         self.x = x
         self.y = y
 
-    def __neg__(self):
-        return Point(-self.x, -self.y)
-
-    def __add__(self, p):
-        return Point(self.x + p.x, self.y + p.y)
-
-    def __sub__(self, p):
-        return Point(self.x - p.x, self.y - p.y)
-
-    def add2(self, p):
-        self.x += p.x
-        self.y += p.y
-        
     def __lt__(self, p):
         return self.x * cmpx + self.y * cmpy < p.x * cmpx + p.y * cmpy
 
     def __gt__(self, p):
         return self.x * cmpx + self.y * cmpy > p.x * cmpx + p.y * cmpy
 
-    def __eq__(self, p):
-        return self.x == p.x and self.y == p.y
-
-    def ortho(self):
-        return Point(-self.y, self.x)
-
     def lensqr(self):
-        return self.x * self.x + self.y * self.y
+        return self.x*self.x + self.y*self.y
     
-    def print(self):
-        print("(",self.x,",",self.y,")")
-
-def init():
-    random.seed()
-    global cmpx, cmpy, ch, p, ret
-    cmpx = 1
-    cmpy = 0
-    ret = 0 
-
 def doit(x):
-    
     if len(ch[x]) == 0:
         return (p[x], p[x])
     result = doit(ch[x][0])
@@ -64,14 +35,13 @@ def doit(x):
     return (-mxtot + mndiff, -mntot + mxdiff)
 
 def tryAngle(dir):
-    global cmpx, cmpy, ret  # Add 'ret' to the list of global variables
+    global cmpx, cmpy
     cmpx = dir.x
     cmpy = dir.y
     result = doit(1)
-    
     mn = result[0]
     mx = result[1]
-    
+    global ret
     ret = max(ret, mn.lensqr())
     ret = max(ret, mx.lensqr())
     return (mn, mx)
@@ -81,38 +51,31 @@ def traceHull(a, b):
         return
     result = tryAngle((b-a).ortho())
     c = result[1]
- 
     if a < c:
         traceHull(a, c)
         traceHull(c, b)
 
+T = int(input())
+N = int(input())
 
-def main():
-    N = int(input())
+ch = [[] for _ in range(N + 1)]
+p = [None] * (N + 1)
 
-    ch = [[] for _ in range(N + 1)]
-    p = [None] * (N + 1)
+for i in range(1, N + 1):
+    line = input().split()
+    M = int(line[0])
+    if M == 0:
+        x = int(line[1])
+        y = int(line[2])
+        p[i] = Point(x, y)
+    else:
+        ch[i] = list(map(int, line[1:]))
 
-    for i in range(1, N + 1):
-        line = input().split()
-        M = int(line[0])
-        if M == 0:
-            x = int(line[1])
-            y = int(line[2])
-            p[i] = Point(x, y)
-        else:
-            ch[i] = list(map(int, line[1:]))
+ret = 0
+angles = tryAngle(Point(1, 0))
+left = angles[0]
+right = angles[1]
+traceHull(left, right)
+traceHull(right, left)
 
-
-    ret = 0
-    angles = tryAngle(Point(1, 0))
-    left = angles[0]
-    right = angles[1]
-    traceHull(left, right)
-
-    print(ret)
-
-# Run the main function
-if __name__ == "__main__":
-    random.seed()
-    main()
+print(ret)

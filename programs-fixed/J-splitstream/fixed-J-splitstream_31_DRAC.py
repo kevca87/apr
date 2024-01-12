@@ -1,10 +1,11 @@
+
 import sys
 sys.setrecursionlimit(100000)
 
 M, N, Q = map(int, input().split())
-nd = [[] for _ in range(N+1)]
+nd = [[] for _ in range(1)]
 mx = 0
-for _ in range(N):
+for _ in range(1, N+1):
   ch, x, y, z = input().split()
   x, y, z = int(x), int(y), int(z)
   mx = max(mx, x, y, z)
@@ -51,7 +52,7 @@ for _ in range(Q):
               x = v[not k % 2]
               k = (k+1) // 2
           else:
-              x = v[osz[v[1]] > osz[v[0]]]
+              x = v[osz[v[1]] < osz[v[0]]]
               k -= sz
       else:
           k = 2 * k - (v[2] == x)
