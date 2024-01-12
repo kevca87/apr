@@ -5,6 +5,7 @@ import json
 
 
 def open_file(file_name, bug_type, index):
+    print(file_name, bug_type, index)
     if (file_name.startswith("A") or file_name.startswith("J") or file_name.startswith('L')) and index < 10:
         relative_path = f"results/py/{file_name}/fixed-{file_name}_0{index}_{bug_type}.py.json"
         with open(relative_path, "r") as file:
@@ -35,22 +36,24 @@ def analize_bug(bug_type, index):
     programs.sort()
     bug_data = []
     final_programs = programs.copy()
+    found_fixes = []
     for program in programs:
         fixes = os.listdir(f"results/py/{program}")
         found = False
         for fix in fixes:
-            if bug_type in fix:
+            if bug_type in fix and program+bug_type not in found_fixes:
                 print(f"Analizing {bug_type} in {program}")
                 data = open_file(program, bug_type, index)
                 bug_data.append(process_data(data))
                 found = True
+                found_fixes.append(program+bug_type)
         if not found:
             final_programs.remove(program)
             print(f"Bug {bug_type} not found in {program}")
     df = pd.DataFrame(bug_data)
     if df.iloc[-1].equals(df.iloc[-2]):
         df = df.iloc[:-1]
-    print(final_programs)
+
     df['program'] = final_programs
     df['bug-type'] = bug_type
     return df
